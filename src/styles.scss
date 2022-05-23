@@ -52,7 +52,24 @@ a img {
 object, embed {
     outline: 0;
 }
-
+.evolv-btn{
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 9px;
+    height: 29px;
+    margin: 0;
+    padding: 10px !important;
+    color: #fff !important;
+    border: none;
+    border-radius: 3px;
+    background-color: #004F79 !important;
+    box-shadow: 0px 1px 3px 0px rgb(0 0 0 / 25%);
+    cursor: pointer;
+    width: auto !important;
+}
+.dropdown-item.active, .dropdown-item:active {
+    background-color: #E4EEF3 !important;
+}
 // p {
 //     margin: 0;
 //     padding: 0;

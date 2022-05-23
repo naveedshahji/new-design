@@ -6,7 +6,8 @@ import { AppComponent } from './app.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
 import { PageHeaderComponent } from './page-header/page-header.component';
 import { PageFooterComponent } from './page-footer/page-footer.component';
-import { DisplayContentComponent } from './display-content/display-content.component';
+import { ValuationHomeComponent } from './valuation/valuation-home/valuation-home.component';
+import { ValuationModelComponent } from './valuation/valuation-model/valuation-model.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { DisplayContentComponent } from './display-content/display-content.compo
     MainMenuComponent,
     PageHeaderComponent,
     PageFooterComponent,
-    DisplayContentComponent
+    ValuationHomeComponent,
+    ValuationModelComponent
   ],
   imports: [
     BrowserModule,

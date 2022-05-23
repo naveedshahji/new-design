@@ -1,1 +1,8 @@
-// .app-body{ background-color: #E6E1D5;}
+.app-body{
+    background: #E6E1D5;
+    padding: 0 35px;
+        .body-comp{
+            background-color: #fff;
+            height: 100vh;
+        }
+}
