@@ -8,6 +8,8 @@ import { PageHeaderComponent } from './page-header/page-header.component';
 import { PageFooterComponent } from './page-footer/page-footer.component';
 import { ValuationHomeComponent } from './valuation/valuation-home/valuation-home.component';
 import { ValuationModelComponent } from './valuation/valuation-model/valuation-model.component';
+import { ConfigureRcfComponent } from './reporting/configure-rcf/configure-rcf.component';
+import { PageErrorComponent } from './page-error/page-error.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { ValuationModelComponent } from './valuation/valuation-model/valuation-m
     PageHeaderComponent,
     PageFooterComponent,
     ValuationHomeComponent,
-    ValuationModelComponent
+    ValuationModelComponent,
+    ConfigureRcfComponent,
+    PageErrorComponent
   ],
   imports: [
     BrowserModule,
