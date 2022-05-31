@@ -70,6 +70,35 @@ object, embed {
 .dropdown-item.active, .dropdown-item:active {
     background-color: #E4EEF3 !important;
 }
+tbody, td, tfoot, th, thead, tr {
+    border-color: #C9C9D6 !important;
+    border-style: solid !important;
+    border-width: 0.5px !important;
+}
+.pi-search.search-pi-icon{
+    margin-left: -15px;
+    font-weight: 700;
+}
+.p-paginator-page, .p-paginator-next, .p-paginator-last, .p-paginator-first, .p-paginator-prev, .p-paginator-current {
+    color: #848484;
+    height: 1.5em;
+    min-width: 1.5em;
+    font-size: 14px;
+}
+p-paginator .p-paginator.p-component {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    background-color: #f4f4f4;
+    border: 1px solid #c8c8c8;
+    padding: 0;
+}
+.p-paginator-pages .p-highlight{
+    background-color: #007ad9;
+    color: #fff;
+    width: 2em;
+}
 // p {
 //     margin: 0;
 //     padding: 0;

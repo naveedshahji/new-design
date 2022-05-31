@@ -49,3 +49,7 @@ tr td {
     height: 23px;
     line-height: 23px
 }
+:host ::ng-deep .ui-table .ui-table-tbody > tr > td.vr-controls {
+    padding-top: 1px;
+    padding-bottom: 1px;
+}

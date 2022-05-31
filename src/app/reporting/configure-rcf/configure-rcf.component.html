@@ -1,10 +1,151 @@
 <h1 class="page-title mt-3">Configure Reporting Custom Fields</h1>
- 
-          <!-- <div class="p-2 valuation-sub">
-            <label> (0 model executions) </label>
-            <button type="button" class="evolv-btn">Create New Execution</button>
-          </div> -->
-    <div class="table-responsive">
+        <div #tableContainer>
+          <p-table #table [value]="uploadedFileList?.content" dataKey="id" rowExpandMode="single"
+          [resizableColumns]="true" columnResizeMode="expand"
+          [lazy]="true" (onLazyLoad)="load($event)" [paginator]="true" [showCurrentPageReport]="true"
+          [lazyLoadOnInit]="false" sortMode="multiple" [multiSortMeta]="multiSortMeta"
+          [rows]="2" [totalRecords]="345">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 3em; padding-left: 5px">
+                            <button #refreshButton pButton type="button" 
+                                    pTooltip="Refresh" tooltipPosition="bottom"
+                                    class="ui-button-rounded border-0 ui-button-secondary"
+                                    (click)="load(); refreshButton.blur()">
+                                    <i class="pi pi-refresh"></i>
+                            </button>
+                        </th>
+                        <th pSortableColumn="uploadedFileName" pResizableColumn>
+                            File Name
+                            <p-sortIcon field="uploadedFileName"></p-sortIcon>
+                            <sup>{{getSortIndex('uploadedFileName')}}</sup>
+                        </th>
+                        <th style="width: 170px" pSortableColumn="uploadTime" pResizableColumn>
+                            Upload Date
+                            <p-sortIcon field="uploadTime"></p-sortIcon>
+                            <sup>{{getSortIndex('uploadTime')}}</sup>
+                        </th>
+                        <th style="width: 133px" pSortableColumn="postingDate" pResizableColumn>
+                            Posting Date
+                            <p-sortIcon field="postingDate"></p-sortIcon>
+                            <sup>{{getSortIndex('postingDate')}}</sup>
+                        </th>
+                        <th  pSortableColumn="uploadedBy" pResizableColumn>
+                            Uploaded By
+                            <p-sortIcon field="uploadedBy"></p-sortIcon>
+                            <sup>{{getSortIndex('uploadedBy')}}</sup>
+                        </th>
+                        <th style="width: 145px" pSortableColumn="targetSchema" pResizableColumn>
+                            Target
+                            <p-sortIcon field="targetSchema"></p-sortIcon>
+                            <sup>{{getSortIndex('targetSchema')}}</sup>
+                        </th>
+                        <th style="width: 145px" pSortableColumn="changes" pResizableColumn>
+                            Total Changes
+                            <p-sortIcon field="changes"></p-sortIcon>
+                            <sup>{{getSortIndex('changes')}}</sup>
+                        </th>
+                        <th style="width: 155px" pSortableColumn="exceptions" pResizableColumn>
+                            Total Exceptions
+                            <p-sortIcon field="exceptions"></p-sortIcon>
+                            <sup>{{getSortIndex('exceptions')}}</sup>
+                        </th>
+                        <th pSortableColumn="status" pResizableColumn>
+                            Status
+                            <p-sortIcon field="status"></p-sortIcon>
+                            <sup>{{getSortIndex('status')}}</sup>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th class="vr-input-icon-holder">
+                            <input class="w-100" pInputText type="text">
+                            <i class="pi pi-search search-pi-icon"></i>
+                        </th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-file let-expanded="expanded">
+                    <tr [class.vr-expanded-row]="expanded">
+                        <td>
+                            <a href="#" >
+                                <i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'">
+                                </i>
+                            </a>
+                        </td>
+                        <td class="vr-overflow-ellipsis" appTooltipOnOverflow>
+                            <a class="vr-downloadable">
+                                {{file.uploadedFileName}}</a>
+                        </td>
+                        <td class="text-right vr-overflow-ellipsis" appTooltipOnOverflow>
+                            <ng-template #date>
+                                <span>
+                                    {{file.uploadTime | date: 'MM/dd/yy hh:mm:ss a'}}
+                                </span>
+                            </ng-template>
+                        </td>
+                        <td class="text-right">{{file.postingDate | date: 'MM/dd/yy'}}</td>
+                        <td class="vr-overflow-ellipsis" appTooltipOnOverflow>{{file.uploadedBy}}</td>
+                        <td class="vr-overflow-ellipsis text-center" appTooltipOnOverflow>{{file.targetSchema=='SDA'?'Accounting Input':file.targetSchema}}</td>
+                        <td class="text-right">{{file.changes | number: '1.0-0'}}</td>
+                        <td class="text-right">{{file.exceptions | number: '1.0-0'}}</td>
+                        <td class="vr-overflow-ellipsis" appTooltipOnOverflow>{{file.status}}</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+     
+
+<!-- <p-table [value]="testResultGroup.scenarios" class="w-100"
+                                 styleClass="vr-std-rise vr-no-border"
+                                 [scrollable]="true"
+                                 [frozenWidth]="'300px'">
+                            <ng-template pTemplate="frozenheader">
+                                <tr>
+                                    <th>Scenario ID</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="frozenbody" let-scenario let-rowIndex="rowIndex">
+                                <tr>
+                                    <td>
+                                        <div class="vr-overflow-ellipsis" appTooltipOnOverflow
+                                             [useParent]="true">
+                                            {{scenario.instrumentId}}</div>
+                                    </td>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <ng-container *ngFor="let field of testResults[groupIdx].consequenceFields">
+                                        <th style="width:300px;">
+                                    <span>
+                                        {{field.label}}
+                                    </span>
+                                        </th>
+                                    </ng-container>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-scenario>
+                                <tr>
+                                    <ng-container *ngFor="let field of testResults[groupIdx].consequenceFields">
+                                        <td style="width:300px;height:32px">
+                                            <div class="vr-overflow-ellipsis" appTooltipOnOverflow
+                                                 [useParent]="true">
+                                                {{field.type !== 'date' ? scenario[field.field]
+                                                : (scenario[field.field] | date: 'MM/dd/yyyy')}}
+                                            </div>
+                                        </td>
+                                    </ng-container>
+                                </tr>
+                            </ng-template>
+                        </p-table> -->
+    <!-- <div class="table-responsive">
         <table class="table table-striped">
             <thead class="table-header">
                 <tr>
@@ -707,7 +848,7 @@
                   </tr>
             </tbody>
         </table>
-    </div>    
+    </div>     -->
     <div class="text-center p-3">
         <button type="button" class="evolv-btn me-3">Save</button>
         <button type="button" class="evolv-btn me-3">Add Row</button>

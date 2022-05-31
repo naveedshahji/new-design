@@ -10,7 +10,10 @@ import { ValuationHomeComponent } from './valuation/valuation-home/valuation-hom
 import { ValuationModelComponent } from './valuation/valuation-model/valuation-model.component';
 import { ConfigureRcfComponent } from './reporting/configure-rcf/configure-rcf.component';
 import { PageErrorComponent } from './page-error/page-error.component';
-
+import {ConfirmationService, MessageService} from 'primeng/api';
+import {ToastModule} from 'primeng/toast';
+import {TableModule} from 'primeng/table';
+ 
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +26,9 @@ import { PageErrorComponent } from './page-error/page-error.component';
     PageErrorComponent
   ],
   imports: [
+    ToastModule,
     BrowserModule,
+    TableModule,
     AppRoutingModule
   ],
   providers: [MainMenuComponent,
