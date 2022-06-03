@@ -11,7 +11,8 @@ export class MainMenuComponent implements OnInit {
   constructor(private router :ActivatedRoute) { }
 
   ngOnInit(): void {
-    console.log(this.router.snapshot);
+    console.log(window.location.pathname);
+    this.mainNav = window.location.pathname.split('/')[1];
   }
 
 }
