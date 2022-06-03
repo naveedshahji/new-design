@@ -10,6 +10,10 @@ import { ValuationHomeComponent } from './valuation/valuation-home/valuation-hom
 import { ValuationModelComponent } from './valuation/valuation-model/valuation-model.component';
 import { ConfigureRcfComponent } from './reporting/configure-rcf/configure-rcf.component';
 import { PageErrorComponent } from './page-error/page-error.component';
+import { InstrumentBrowserComponent } from './accounting/instrument-browser/instrument-browser.component';
+import { ValuationCohortComponent } from './valuation/valuation-cohort/valuation-cohort.component';
+import { SearchPositionDataComponent } from './valuation/position-management/search-position-data/search-position-data.component';
+import { UploadPositionFileComponent } from './valuation/position-management/upload-position-file/upload-position-file.component';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import {ToastModule} from 'primeng/toast';
 import {TableModule} from 'primeng/table';
@@ -23,7 +27,11 @@ import {TableModule} from 'primeng/table';
     ValuationHomeComponent,
     ValuationModelComponent,
     ConfigureRcfComponent,
-    PageErrorComponent
+    PageErrorComponent,
+    InstrumentBrowserComponent,
+    ValuationCohortComponent,
+    SearchPositionDataComponent,
+    UploadPositionFileComponent
   ],
   imports: [
     ToastModule,
@@ -37,3 +45,5 @@ import {TableModule} from 'primeng/table';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+

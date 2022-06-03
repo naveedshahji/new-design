@@ -1,0 +1,111 @@
+.page-title {
+    font-size: 18px;
+    color: #231f20;
+    font-weight: bold;
+    font-family: 'Latobold', sans-serif;
+    padding: 0px 0 10px 5px;
+    margin: 0 20px 10px 10px;
+    border-bottom: 1px solid #d9d9d9;
+}
+
+.page-sub-title {
+    font-size: 18px;
+    color: #231f20;
+    font-weight:lighter;
+    font-family:'Lato', sans-serif;
+    padding: 0px 0 0px 0px;
+    margin: 0 0px 7px 5px;
+    padding-left: 10px;
+    
+    //border-bottom: 1px solid #d9d9d9;
+}
+label,input,select{
+    font-size: 13px;
+    width: 100%;
+    margin-left: 5px;
+    margin-top: 7px;
+    border: #231f20;
+
+    
+}
+input{
+    border: 1px solid #004f79;
+    border-radius: 3px;
+    color: #a7a9ac;
+    background: #fff;
+    box-shadow: inset 0px 1px 2px 0px rgb(0 0 0 / 40%);
+    
+    font-size: 14px;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    margin-left: 5px;
+   
+}
+.input-group-append {
+  cursor: pointer;
+}
+.inline-input{
+    display: flex;
+    width: 100%;
+}
+.row{
+    margin-left: 5px;
+    padding-top: 0%;
+}
+.span{
+    display: flex;
+}
+.evolv-btn{
+    margin-top: 21px;
+    margin-left: 20px;
+}
+.button-tab{
+    margin-left: 10%;
+    margin-top: 20px;
+}
+textarea{
+    width: 370px;
+    height: 60px;
+    resize: none;
+}
+.checkbox{
+    box-shadow: inset 0px 0px 0px 0px rgb(0 0 0 / 40%);
+    padding-left: 0%;
+    margin-left: 10px;
+    margin-top: 20px;
+    width: 1%;
+    padding-right: 0;
+  
+  
+}
+.label{
+    margin-top: 30px;
+    width: 0;
+    margin-left: 0;
+    margin-right: 30px;
+    padding-right: 80%;
+    border: 0;
+   
+}
+.form-check-label{
+    margin-top: 18px;
+}
+
+.link{
+    font-family: 'Latobold', sans-serif;
+    text-decoration:none ;
+    
+    
+    text-decoration:none ;
+    
+}
+.link:hover{
+    color: rgb(8, 86, 127);
+}
+.link-div{
+    margin-top: 30px;
+    font-weight: lighter;
+}
+label{
+    margin-top: 30px;
+}

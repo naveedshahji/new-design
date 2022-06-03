@@ -7,6 +7,17 @@
     margin: 0 15px 20px 15px;
     border-bottom: 1px solid #d9d9d9;
 }
+.page-sub-title {
+    font-size: 18px;
+    color: #231f20;
+    font-weight:lighter;
+    font-family:'Lato', sans-serif;
+    padding: 0px 0 18px 0px;
+    margin: 0 15px 20px 15px;
+    padding-left: 10px;
+    
+    //border-bottom: 1px solid #d9d9d9;
+}
 .table-header {
     background-image: none;
     background-color: #5e9dc0!important;
@@ -28,28 +39,28 @@ th{
     padding: 15px 21px 15px 15px;
     border-bottom: 1px solid #4b7e99 !important;
 }
-.table-responsive{
-    height:300px;  
-    overflow-y:scroll;
-    overflow-x: hidden;
-    thead tr:nth-child(1) th{
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      background-color: #5e9dc0;
-    }
-}
-tr td {
-    font-family: Lato, sans-serif;
-    font-size: 12px;
-    border-right: 1px solid #C9C9D6;
-    border-top: 1px solid #fff;
-    border-bottom: 1px solid #DEE4E8;
-    padding: 1px 10px;
-    height: 23px;
-    line-height: 23px
-}
-:host ::ng-deep .ui-table .ui-table-tbody > tr > td.vr-controls {
-    padding-top: 1px;
-    padding-bottom: 1px;
-}
+
+
+  
+  div.container {
+    border-radius: 5px;
+    margin: 0 0 0 0;
+  }
+  .row{
+      margin-left: 10px;
+  }
+  label,input,select{
+      font-size: 13px;
+      width: 80%;
+  }
+  .input-group-append {
+    cursor: pointer;
+  }
+  .inline-input{
+      display: flex;
+      width: 100%;
+  }
+  .lead{
+     font-size: 15px;
+     padding: 10px;
+  }

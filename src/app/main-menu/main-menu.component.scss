@@ -99,16 +99,16 @@ img, svg {
     font-size: 1px;
     float: right;
 }
-// ul.dropdown-menu{
-//     li{
-//         display: inline-flex;
-//         margin-top: 2px;
-//     }
-// }
  
 .sub-menu-link:hover .submenu {
     display: block;
     margin: -25px 100%;
     overflow: inherit !important;
     min-width: 200px;
+}
+.nav-link.dropdown-toggle.active{
+    background-color: #fff !important;
+    color: black !important;
+    padding: 12px;
+    border-radius: 6px 6px 0px 0px !important;
 }

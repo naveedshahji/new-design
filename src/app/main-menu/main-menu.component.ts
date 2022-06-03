@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-main-menu',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main-menu.component.scss']
 })
 export class MainMenuComponent implements OnInit {
-
-  constructor() { }
+  mainNav: string = 'valuation';
+  constructor(private router :ActivatedRoute) { }
 
   ngOnInit(): void {
+    console.log(this.router.snapshot);
   }
 
 }
