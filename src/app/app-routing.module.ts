@@ -14,17 +14,35 @@ const routes: Routes = [
     component: ValuationHomeComponent
   },
   {
-    path: 'valuation/position-management/search-position-data',
-    component: SearchPositionDataComponent
+    path:'valuation', 
+    component: ValuationHomeComponent,
+    children: [
+      {
+        path:'home', component: ValuationHomeComponent
+      },
+      {
+        path:'position-management/search-position-data', component: SearchPositionDataComponent
+      },
+      {
+        path:'position-management/upload-position-file', component: UploadPositionFileComponent
+      },
+      {
+        path:'cohort', component: ValuationCohortComponent
+      }
+    ]
   },
-  {
-    path: 'valuation/position-management/upload-position-file',
-    component: UploadPositionFileComponent
-  },
-  {
-    path: 'valuation/cohort',
-    component: ValuationCohortComponent
-  },
+  // {
+  //   path: 'valuation/position-management/search-position-data',
+  //   component: SearchPositionDataComponent
+  // },
+  // {
+  //   path: 'valuation/position-management/upload-position-file',
+  //   component: UploadPositionFileComponent
+  // },
+  // {
+  //   path: 'valuation/cohort',
+  //   component: ValuationCohortComponent
+  // },
   {
     path: 'accounting/instrument-browser',
     component: InstrumentBrowserComponent
