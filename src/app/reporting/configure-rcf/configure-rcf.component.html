@@ -1,111 +1,114 @@
-<h1 class="page-title mt-3">Configure Reporting Custom Fields</h1>
-        <div #tableContainer>
-          <p-table #table [value]="uploadedFileList?.content" dataKey="id" rowExpandMode="single"
-          [resizableColumns]="true" columnResizeMode="expand"
-          [lazy]="true" (onLazyLoad)="load($event)" [paginator]="true" [showCurrentPageReport]="true"
-          [lazyLoadOnInit]="false" sortMode="multiple" [multiSortMeta]="multiSortMeta"
-          [rows]="2" [totalRecords]="345">
-                <ng-template pTemplate="header">
-                    <tr>
-                        <th style="width: 3em; padding-left: 5px">
-                            <button #refreshButton pButton type="button" 
-                                    pTooltip="Refresh" tooltipPosition="bottom"
-                                    class="ui-button-rounded border-0 ui-button-secondary"
-                                    (click)="load(); refreshButton.blur()">
-                                    <i class="pi pi-refresh"></i>
-                            </button>
-                        </th>
-                        <th pSortableColumn="uploadedFileName" pResizableColumn>
-                            Name
-                            <p-sortIcon field="uploadedFileName"></p-sortIcon>
-                            <sup>{{getSortIndex('uploadedFileName')}}</sup>
-                        </th>
-                        <th style="width: 170px" pSortableColumn="uploadTime" pResizableColumn>
-                            Description
-                            <p-sortIcon field="uploadTime"></p-sortIcon>
-                            <sup>{{getSortIndex('uploadTime')}}</sup>
-                        </th>
-                        <th style="width: 133px" pSortableColumn="postingDate" pResizableColumn>
-                            Date
-                            <p-sortIcon field="postingDate"></p-sortIcon>
-                            <sup>{{getSortIndex('postingDate')}}</sup>
-                        </th>
-                        <th  pSortableColumn="uploadedBy" pResizableColumn>
-                            Uploaded By
-                            <p-sortIcon field="uploadedBy"></p-sortIcon>
-                            <sup>{{getSortIndex('uploadedBy')}}</sup>
-                        </th>
-                        <th style="width: 145px" pSortableColumn="targetSchema" pResizableColumn>
-                            Target
-                            <p-sortIcon field="targetSchema"></p-sortIcon>
-                            <sup>{{getSortIndex('targetSchema')}}</sup>
-                        </th>
-                        <th style="width: 145px" pSortableColumn="changes" pResizableColumn>
-                            Total Changes
-                            <p-sortIcon field="changes"></p-sortIcon>
-                            <sup>{{getSortIndex('changes')}}</sup>
-                        </th>
-                        <th style="width: 155px" pSortableColumn="exceptions" pResizableColumn>
-                            Total Exceptions
-                            <p-sortIcon field="exceptions"></p-sortIcon>
-                            <sup>{{getSortIndex('exceptions')}}</sup>
-                        </th>
-                        <th pSortableColumn="status" pResizableColumn>
-                            Status
-                            <p-sortIcon field="status"></p-sortIcon>
-                            <sup>{{getSortIndex('status')}}</sup>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th></th>
-                        <th class="vr-input-icon-holder">
-                            <input class="w-100" pInputText type="text">
-                            <i class="pi pi-search search-pi-icon"></i>
-                        </th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="body" let-file let-expanded="expanded">
-                    <tr [class.vr-expanded-row]="expanded">
-                        <td>
-                            <a href="#" >
-                                <i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'">
-                                </i>
-                            </a>
-                        </td>
-                        <td class="vr-overflow-ellipsis" appTooltipOnOverflow>
-                            <a class="vr-downloadable">
-                                {{file.uploadedFileName}}</a>
-                        </td>
-                        <td class="text-right vr-overflow-ellipsis" appTooltipOnOverflow>
-                            <ng-template #date>
-                                <span>
-                                    {{file.uploadTime | date: 'MM/dd/yy hh:mm:ss a'}}
-                                </span>
-                            </ng-template>
-                        </td>
-                        <td class="text-right">{{file.postingDate | date: 'MM/dd/yy'}}</td>
-                        <td class="vr-overflow-ellipsis" appTooltipOnOverflow>{{file.uploadedBy}}</td>
-                        <td class="vr-overflow-ellipsis text-center" appTooltipOnOverflow>{{file.targetSchema=='SDA'?'Accounting Input':file.targetSchema}}</td>
-                        <td class="text-right">{{file.changes | number: '1.0-0'}}</td>
-                        <td class="text-right">{{file.exceptions | number: '1.0-0'}}</td>
-                        <td class="vr-overflow-ellipsis" appTooltipOnOverflow>{{file.status}}</td>
-                    </tr>
-                </ng-template>
-            </p-table>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-2 bg-dark navbar-nav-scroll">
+            <app-left-sidebar></app-left-sidebar>
         </div>
-    <div class="text-center p-3">
-        <button type="button" class="evolv-btn me-3">Save</button>
-        <button type="button" class="evolv-btn me-3">Add Row</button>
-        <button type="button" class="evolv-btn me-3">Delete</button>
-        <button type="button" class="evolv-btn me-3">Revert</button>
-        <button type="button" class="evolv-btn me-3">Copy</button>
-        <button type="button" class="evolv-btn me-3">Pase</button>
-        <button type="button" class="evolv-btn me-3">Export</button>
+        <div class="col-10">
+            <h1 class="page-title mt-3">Configure Reporting Custom Fields</h1>
+            <div #tableContainer>
+            <p-table #table [value]="uploadedFileList?.content" dataKey="id" rowExpandMode="single"
+            [resizableColumns]="true" columnResizeMode="expand"
+            [lazy]="true" (onLazyLoad)="load($event)" [paginator]="true" [showCurrentPageReport]="true"
+            [lazyLoadOnInit]="false" sortMode="multiple" [multiSortMeta]="multiSortMeta"
+            [rows]="2" [totalRecords]="345">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width: 3em; padding-left: 5px">
+                            </th>
+                            <th pSortableColumn="uploadedFileName" pResizableColumn>
+                                Name
+                                <p-sortIcon field="uploadedFileName"></p-sortIcon>
+                                <sup>{{getSortIndex('uploadedFileName')}}</sup>
+                            </th>
+                            <th style="width: 170px" pSortableColumn="uploadTime" pResizableColumn>
+                                Description
+                                <p-sortIcon field="uploadTime"></p-sortIcon>
+                                <sup>{{getSortIndex('uploadTime')}}</sup>
+                            </th>
+                            <th style="width: 133px" pSortableColumn="postingDate" pResizableColumn>
+                                Date
+                                <p-sortIcon field="postingDate"></p-sortIcon>
+                                <sup>{{getSortIndex('postingDate')}}</sup>
+                            </th>
+                            <th  pSortableColumn="uploadedBy" pResizableColumn>
+                                Uploaded By
+                                <p-sortIcon field="uploadedBy"></p-sortIcon>
+                                <sup>{{getSortIndex('uploadedBy')}}</sup>
+                            </th>
+                            <th style="width: 145px" pSortableColumn="targetSchema" pResizableColumn>
+                                Target
+                                <p-sortIcon field="targetSchema"></p-sortIcon>
+                                <sup>{{getSortIndex('targetSchema')}}</sup>
+                            </th>
+                            <th style="width: 145px" pSortableColumn="changes" pResizableColumn>
+                                Total Changes
+                                <p-sortIcon field="changes"></p-sortIcon>
+                                <sup>{{getSortIndex('changes')}}</sup>
+                            </th>
+                            <th style="width: 155px" pSortableColumn="exceptions" pResizableColumn>
+                                Total Exceptions
+                                <p-sortIcon field="exceptions"></p-sortIcon>
+                                <sup>{{getSortIndex('exceptions')}}</sup>
+                            </th>
+                            <th pSortableColumn="status" pResizableColumn>
+                                Status
+                                <p-sortIcon field="status"></p-sortIcon>
+                                <sup>{{getSortIndex('status')}}</sup>
+                            </th>
+                        </tr>
+                        <!-- <tr>
+                            <th></th>
+                            <th class="vr-input-icon-holder">
+                                <input class="w-100" pInputText type="text">
+                                <i class="pi pi-search search-pi-icon"></i>
+                            </th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr> -->
+                    </ng-template>
+                    <ng-template pTemplate="body" let-file let-expanded="expanded">
+                        <tr [class.vr-expanded-row]="expanded">
+                            <td>
+                                <a href="#" >
+                                    <i class="pi pi-folder-open">
+                                    </i>
+                                </a>
+                            </td>
+                            <td class="vr-overflow-ellipsis" appTooltipOnOverflow>
+                                <a class="vr-downloadable">
+                                    {{file.uploadedFileName}}</a>
+                            </td>
+                            <td class="text-right vr-overflow-ellipsis" appTooltipOnOverflow>
+                                <ng-template #date>
+                                    <span>
+                                        {{file.uploadTime | date: 'MM/dd/yy hh:mm:ss a'}}
+                                    </span>
+                                </ng-template>
+                            </td>
+                            <td class="text-right">{{file.postingDate | date: 'MM/dd/yy'}}</td>
+                            <td class="vr-overflow-ellipsis" appTooltipOnOverflow>{{file.uploadedBy}}</td>
+                            <td class="vr-overflow-ellipsis text-center" appTooltipOnOverflow>{{file.targetSchema=='SDA'?'Accounting Input':file.targetSchema}}</td>
+                            <td class="text-right">{{file.changes | number: '1.0-0'}}</td>
+                            <td class="text-right">{{file.exceptions | number: '1.0-0'}}</td>
+                            <td class="vr-overflow-ellipsis" appTooltipOnOverflow>{{file.status}}</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        <div class="text-center p-3">
+            <button type="button" class="evolv-btn me-3">Save</button>
+            <button type="button" class="evolv-btn me-3">Add Row</button>
+            <button type="button" class="evolv-btn me-3">Delete</button>
+            <button type="button" class="evolv-btn me-3">Revert</button>
+            <button type="button" class="evolv-btn me-3">Copy</button>
+            <button type="button" class="evolv-btn me-3">Pase</button>
+            <button type="button" class="evolv-btn me-3">Export</button>
+        </div>
+        </div>
     </div>
+</div>
