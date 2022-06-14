@@ -1,9 +1,10 @@
 {
-    "/evolv/*": {
-        "target": "http://localhost:8080",
-        "secure": false,
-        "pathRewrite": {
-             "/evolv-ui/api": "/evolv"
-        }
+    "/evolv/data-management/*": {
+        "target": "http://localhost:8180",
+        "secure": false
+    },
+    "/evolv/ods/*": {
+        "target": "http://localhost:8180",
+        "secure": false
     }
 }

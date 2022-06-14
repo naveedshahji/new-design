@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild, ChangeDetectionStrategy} from '@angular/co
 import {LazyLoadEvent, SortMeta} from 'primeng/api';
 import {Table} from 'primeng/table';
 import {delay, finalize, mergeMap} from 'rxjs/operators';
+import {AppResourceService} from '../../core/api/app.resource';
 @Component({
   selector: 'app-configure-rcf',
   templateUrl: './configure-rcf.component.html',
@@ -10,7 +11,7 @@ import {delay, finalize, mergeMap} from 'rxjs/operators';
 })
 export class ConfigureRcfComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service: AppResourceService) { }
   ngOnInit(): void {
     const uploadedFileList: any = {
       "links" : [ ],
@@ -192,7 +193,16 @@ export class ConfigureRcfComponent implements OnInit {
 //                 if (result.page.totalElements === 0) {
 //                     uploadedFileList.content = [];
 //                 }
-this.uploadedFileList = uploadedFileList;
+  this.uploadedFileList = uploadedFileList;
+ 
+  this.service.getQueryDef("test").subscribe((types) => {
+    console.log("type",types)
+    //this.queryDefNameOptions = types;
+    //this.queryDefNameOptions.unshift(ESI_TEMPLATE);
+  });
+  // this.service.getTemplateTables().subscribe((tables) => {
+  //   this.templateTables = tables;
+  // });
   }
 
  

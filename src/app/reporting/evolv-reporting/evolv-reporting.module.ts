@@ -8,6 +8,8 @@ import { LeftSidebarComponent } from '../left-sidebar/left-sidebar.component';
 import { ConfigureRcfComponent } from '../configure-rcf/configure-rcf.component';
 import {TableModule} from 'primeng/table';
 import { RouterTestingModule } from "@angular/router/testing";
+import { TreenodeserviceService } from '../evolv-reporting/treenodeservice.service';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [ConfigureRcfComponent,LeftSidebarComponent
@@ -17,8 +19,10 @@ import { RouterTestingModule } from "@angular/router/testing";
     TableModule,
     TreeModule,
     reportingRoutesModule,
-    RouterTestingModule
+    RouterTestingModule,
+    HttpClientModule
   ],
+  providers: [TreenodeserviceService],
   exports: [RouterModule]
 })
 export class EvolvReportingModule { }
