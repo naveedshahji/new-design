@@ -23,13 +23,8 @@ import { AppRoutingModule } from './app-routing.module';
     MainMenuComponent,
     PageHeaderComponent,
     PageFooterComponent,
-    ValuationHomeComponent,
-    ValuationModelComponent,
     PageErrorComponent,
-    InstrumentBrowserComponent,
-    ValuationCohortComponent,
-    SearchPositionDataComponent,
-    UploadPositionFileComponent
+    InstrumentBrowserComponent
   ],
   imports: [
     ToastModule,

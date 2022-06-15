@@ -1,3 +1,6 @@
 .nav-link{
     color: #fff;
 }
+:host ::ng-deep .p-treenode-children {
+    margin-left: 10px !important;
+}

@@ -6,7 +6,7 @@ export const apis = {
     queryDef: '/evolv/ods/queries/queryset/parameters',
     downloadData: '/evolv/ods/queries/queryset/execute',
     uploadData: '/evolv/ods/fileupload/upload',
-    uploadedFiles: '/evolv/ods/fileuploadlogs/search/all',
+    uploadedFiles: '/evolv/ods/fileuploadlogs/search/all?size=14&page=0&sort=uploadTime,asc&tenant=TENANT_DEV',
     uploadedFilesFilter: '/evolv/ods/fileuploadlogs/search/likefilename',
     uploadedFile: '/evolv/ods/fileuploadlogs/:id',
     uploadedFilesSearch: '/evolv/ods/fileuploadlogs/search/byfilename',

@@ -33,6 +33,11 @@ const routes: Routes = [
     path: 'accounting/instrument-browser',
     component: InstrumentBrowserComponent
   },
+  //lazy load all routes
+  // {
+  //   path: 'reporting',
+  //   loadChildren: () => import('./profile/profile.module').then(m => m.ReportingModule)
+  // },
   { path: '',   redirectTo: '/valuation/home', pathMatch: 'full' },
   { path: '**', component: PageErrorComponent },
 ];

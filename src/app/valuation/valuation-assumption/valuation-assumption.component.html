@@ -1,8 +1,9 @@
-<h1 class="page-title mt-3">Search Cohort Group Definition</h1>
-      
+<h1 class="page-title mt-3">Assumption Management</h1>
+<h2 class="page-sub-title mt-3">Search Criteria</h2>
   <div class="row">
+    
     <div class="col-md-3">
-        <label for="validationServer01">Search Criteria</label>
+        <label for="validationServer01">Assumption Name:</label>
         <input type="text" class="form-control " id="validationServer01" placeholder="Search Criteria"  required>
        
     </div>
@@ -22,17 +23,21 @@
         </select>
     </div>
   </div>    
-  <div class="col-md-12 text-area">
-    <div class="label">Tag(s):</div>
-    <select id="tags" name="tags" style="width:100%" multiple="multiple" class=" form-control text-area"></select><input  type="hidden" name="_tags" value="1">
-  </div>
   <div class="row">
     <input type="button" id="searchButton" name="searchButton" value="Search"  class="evolv-btn">
     <input type="reset" name="clearButton" value="Reset"  class="evolv-btn" >
   </div>
+
+  
+  <div class="col-md-12 text-area">
+    <div class="label">Tag(s):</div>
+    <select id="tags" name="tags" style="width:100%" multiple="multiple" class=" form-control text-area"></select><input  type="hidden" name="_tags" value="1">
+  </div>
+  
   <div class="row">
-    <h6 class="page-sub-title mt-3">Cohort</h6> 
-    <button type="button-bottom" class="evolv-btn">Add</button>
-    <button type="button-bottom" class="evolv-btn" disabled>Delete</button>
+    <h6 class="page-sub-title mt-3">Assumptions</h6> 
+    <button type="button-bottom" class="evolv-btn">Upload Assumptions</button>
+    <button type="button-bottom" class="evolv-btn">Delete</button>
+    <button type="button-bottom" class="evolv-btn" disabled>Edit</button>
     <button type="button-bottom" class="evolv-btn" disabled>Copy</button>
   </div>
