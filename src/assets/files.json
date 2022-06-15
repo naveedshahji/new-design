@@ -2,12 +2,12 @@
     "data": 
     [
         {
-            "label": "Documents",
+            "label": "My Reporting",
             "data": "Documents Folder",
             "expandedIcon": "pi pi-folder-open",
             "collapsedIcon": "pi pi-folder",
             "children": [{
-                    "label": "Work",
+                    "label": "My Reporting",
                     "data": "Work Folder",
                     "expandedIcon": "pi pi-folder-open",
                     "collapsedIcon": "pi pi-folder",
@@ -22,22 +22,22 @@
                 }]
         },
         {
-            "label": "Pictures",
+            "label": "Custom Reporting",
             "data": "Pictures Folder",
             "expandedIcon": "pi pi-folder-open",
             "collapsedIcon": "pi pi-folder",
             "children": [
-                {"label": "barcelona.jpg", "icon": "pi pi-image", "data": "Barcelona Photo"},
+                {"label": "barcelona.jpg", "icon": "pi pi-image", "data": "Custom Reporting"},
                 {"label": "logo.jpg", "icon": "pi pi-image", "data": "PrimeFaces Logo"},
                 {"label": "primeui.png", "icon": "pi pi-image", "data": "PrimeUI Logo"}]
         },
         {
-            "label": "Movies",
-            "data": "Movies Folder",
+            "label": "Shared Reporti",
+            "data": "Shared Reporting",
             "expandedIcon": "pi pi-folder-open",
             "collapsedIcon": "pi pi-folder",
             "children": [{
-                    "label": "Al Pacino",
+                    "label": "Shared Reporti",
                     "data": "Pacino Movies",
                     "children": [{"label": "Scarface", "icon": "pi pi-video", "data": "Scarface Movie"}, {"label": "Serpico", "icon": "pi pi-video", "data": "Serpico Movie"}]
                 },

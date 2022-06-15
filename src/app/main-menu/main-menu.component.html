@@ -41,36 +41,36 @@
            <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" [ngClass]="mainNav === 'valuation' ?  'active' : ''" href="#" data-bs-toggle="dropdown" aria-expanded="false">  Valuation  </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" routerLink="/valuation/home" routerLinkActive="active" (click)="mainNav = 'valuation'"> Home </a></li>
-              <li><a class="dropdown-item" routerLink="/valuation/model" routerLinkActive="active" (click)="mainNav = 'valuation'"> Model Management </a></li>
-              <li><a class="dropdown-item" routerLink="/valuation/cohort" routerLinkActive="active" (click)="mainNav = 'valuation'"> Cohort Management </a></li>
-              <li class="sub-menu-link"><a class="dropdown-item" href="#"> Position Management <i class="sub-option"></i> </a>                    
+              <li><a class="dropdown-item" routerLink="/valuation/Home" routerLinkActive="active" (click)="mainNav = 'valuation'"> Home </a></li>
+              <li><a class="dropdown-item" routerLink="/valuation/Model" routerLinkActive="active" (click)="mainNav = 'valuation'"> Model Management </a></li>
+              <li><a class="dropdown-item" routerLink="/valuation/Cohort" routerLinkActive="active" (click)="mainNav = 'valuation'"> Cohort Management </a></li>
+              <li class="sub-menu-link"><a class="dropdown-item"> Position Management <i class="sub-option"></i> </a>                    
                   <ul class="submenu dropdown-menu">
-                      <li><a class="dropdown-item" routerLink="/valuation/position-management/upload-position-file" routerLinkActive="active" (click)="mainNav = 'valuation'">Upload Position File</a></li>
-                      <li><a class="dropdown-item" href="#">Transfer Data to EVOLV Valuation</a></li>
-                      <li><a class="dropdown-item" routerLink="/valuation/position-management/search-position-data" routerLinkActive="active" (click)="mainNav = 'valuation'">Search Position Data</a></li>
-                      <li><a class="dropdown-item" href="#">Position Updater</a></li>
+                      <li><a class="dropdown-item" routerLink="/valuation/UploadPositionFile" routerLinkActive="active" (click)="mainNav = 'valuation'">Upload Position File</a></li>
+                      <li><a class="dropdown-item" routerLink="/valuation/TransferDataToEvolvValuation" routerLinkActive="active" (click)="mainNav = 'valuation'">Transfer Data to EVOLV Valuation</a></li>
+                      <li><a class="dropdown-item" routerLink="/valuation/SearchPositionData" routerLinkActive="active" (click)="mainNav = 'valuation'">Search Position Data</a></li>
+                      <li><a class="dropdown-item" routerLink="/valuation/PositionUpdater" routerLinkActive="active" (click)="mainNav = 'valuation'">Position Updater</a></li>
                   </ul>
               </li>
-              <li><a class="dropdown-item" href="#"> Assumption Management </a></li>
-                <li class="sub-menu-link"><a class="dropdown-item" href="#"> Model Execution Management <i class="sub-option"></i> </a>                
+              <li><a class="dropdown-item" routerLink="/valuation/Assumption" routerLinkActive="active" (click)="mainNav = 'valuation'"> Assumption Management </a></li>
+                <li class="sub-menu-link"><a class="dropdown-item"> Model Execution Management <i class="sub-option"></i> </a>                
                     <ul class="submenu dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Create Model Execution</a></li>
-                        <li><a class="dropdown-item" href="#">Search Model Executions</a></li>
-                        <li><a class="dropdown-item" href="#">Create Composite Run</a></li>
+                        <li><a class="dropdown-item" routerLink="/valuation/CreateModelExecution" routerLinkActive="active" (click)="mainNav = 'valuation'">Create Model Execution</a></li>
+                        <li><a class="dropdown-item" routerLink="/valuation/SearchModelExecution" routerLinkActive="active" (click)="mainNav = 'valuation'">Search Model Executions</a></li>
+                        <li><a class="dropdown-item" routerLink="/valuation/UploadPositionFile" routerLinkActive="active" (click)="mainNav = 'valuation'">Create Composite Run</a></li>
                     </ul>
                 </li>
-                <li class="sub-menu-link"><a class="dropdown-item" href="#"> Discount Scenario Management <i class="sub-option"></i> </a>               
+                <li class="sub-menu-link"><a class="dropdown-item"> Discount Scenario Management <i class="sub-option"></i> </a>               
                     <ul class="submenu dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Create Discount Scenario  </a></li>
-                        <li><a class="dropdown-item" href="#">Search Discount Scenarios</a></li>
-                        <li><a class="dropdown-item" href="#">New Business Management</a></li>
+                        <li><a class="dropdown-item" routerLink="/valuation/CreateDiscountScenario" routerLinkActive="active" (click)="mainNav = 'valuation'">Create Discount Scenario  </a></li>
+                        <li><a class="dropdown-item" routerLink="/valuation/SearchDiscountScenario" routerLinkActive="active" (click)="mainNav = 'valuation'">Search Discount Scenarios</a></li>
+                        <li><a class="dropdown-item" routerLink="/valuation/SearchNewBusiness" routerLinkActive="active" (click)="mainNav = 'valuation'">New Business Management</a></li>
                     </ul>
                 </li>
-                <li class="sub-menu-link"><a class="dropdown-item" href="#"> New Business Management <i class="sub-option"></i> </a>               
+                <li class="sub-menu-link"><a class="dropdown-item"> New Business Management <i class="sub-option"></i> </a>               
                     <ul class="submenu dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Create New Business  </a></li>
-                        <li><a class="dropdown-item" href="#">Search New Business</a></li>
+                        <li><a class="dropdown-item" routerLink="/valuation/CreateNewBusiness" routerLinkActive="active" (click)="mainNav = 'valuation'">Create New Business  </a></li>
+                        <li><a class="dropdown-item" routerLink="/valuation/SearchNewBusiness" routerLinkActive="active" (click)="mainNav = 'valuation'">Search New Business</a></li>
                     </ul>
                 </li>
             </ul>
@@ -78,12 +78,12 @@
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" [ngClass]="mainNav === 'reporting' ?  'active' : ''" href="#" data-bs-toggle="dropdown" aria-expanded="false">  Reporting  </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#"> Home </a></li>
-              <li><a class="dropdown-item" href="#"> Shared Reports </a></li>
-              <li><a class="dropdown-item" href="#"> Custom Reports </a></li>
-              <li><a class="dropdown-item" href="#"> My Reports </a></li>
+              <li><a class="dropdown-item" routerLink="/reporting/configurercf" routerLinkActive="active" (click)="mainNav = 'reporting'"> Home </a></li>
+              <li><a class="dropdown-item" routerLink="/reporting/configurercf" routerLinkActive="active" (click)="mainNav = 'reporting'"> Shared Reports </a></li>
+              <li><a class="dropdown-item" routerLink="/reporting/configurercf" routerLinkActive="active" (click)="mainNav = 'reporting'"> Custom Reports </a></li>
+              <li><a class="dropdown-item" routerLink="/reporting/configurercf" routerLinkActive="active" (click)="mainNav = 'reporting'"> My Reports </a></li>
               <li><a class="dropdown-item" routerLink="/reporting/configurercf" routerLinkActive="active" (click)="mainNav = 'reporting'"> Configure Reporting Custom Fields </a></li>
-              <li><a class="dropdown-item" href="#"> MicroStrategy Office Installation </a></li>
+              <li><a class="dropdown-item" routerLink="/reporting/configurercf" routerLinkActive="active" (click)="mainNav = 'reporting'"> MicroStrategy Office Installation </a></li>
             </ul>
         </li>
         <li class="nav-item dropdown">

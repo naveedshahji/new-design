@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {TreenodeserviceService } from './../evolv-reporting/treenodeservice.service';
+import {TreenodeserviceService } from '../treenodeservice.service';
 import { TreeNode } from 'primeng/api';
 
 @Component({
