@@ -26,6 +26,7 @@ export class EdtResource {
     constructor(@inject(EdtService) private service: EdtService) {
     }
 
+    
     @httpGet(apis.config)
     async getAppConfig(): Promise<IAppConfig> {
         // throw new RestError(`MESSAGE`,['ERR1', 'ERR2'],409);

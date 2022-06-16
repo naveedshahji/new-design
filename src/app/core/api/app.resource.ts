@@ -45,9 +45,16 @@ export class AppResourceService {
     // }
     
 
+    // getQueryDef(name: string): Observable<IQueryDef> {
+    //     console.log("name",name)
+    //     return this.http.get<IQueryDef>(apis.uploadedFiles);
+    // }
     getQueryDef(name: string): Observable<IQueryDef> {
-        console.log("name",name)
-        return this.http.get<IQueryDef>(apis.uploadedFiles);
+        return this.http.get<IQueryDef>(apis.uploadedFiles,
+            HttpParamsFromObject.options(<TQueryDefQuery>{
+                querySetName: name,
+                usageType: DEFAULT_QUERY_DEF_CATEGORY
+            }));
     }
 
     // getUploadedFiles(query: TUploadedFilesQuery): Observable<IPageableResult<IUploadedFile>> {

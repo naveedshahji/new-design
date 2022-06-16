@@ -115,7 +115,7 @@ export interface ILatestPosting {
 export const ROLES = ['ManageInputData', 'LoadStageData', 'ReviewDataFiles'];
 export type TRoles = typeof ROLES[number];
 
-export const DEV_LOGOUT_URL =  '/evolv/ods/logout'; // used in dev mode only; taken from keycloak.auth in prod mode
+export const DEV_LOGOUT_URL =  '/evolv/logout'; // used in dev mode only; taken from keycloak.auth in prod mode
 
 export interface ISummaryRecord {
     total: number;
