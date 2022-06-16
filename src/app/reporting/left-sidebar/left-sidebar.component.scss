@@ -5,7 +5,17 @@
     margin-left: 10px !important;
 }
 :host ::ng-deep .p-treenode-label > span{
+    font-family: Tahoma,Arial,Verdana,Helvetica,sans-serif;
+    font-size: 8pt;
     margin: 5px;
+    padding: 0;
+    color: #656565;
+}
+:host ::ng-deep .pi-folder:before,:host ::ng-deep .p-treenode-icon {
+    color: #656565;
+}
+:host ::ng-deep .pi-chevron-down:before,:host ::ng-deep .pi-chevron-right:before {
+    font-size: .7rem;
 }
 button.bg-danger{
     cursor: pointer;
