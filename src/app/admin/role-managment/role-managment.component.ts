@@ -3,14 +3,15 @@ import {LazyLoadEvent, SortMeta} from 'primeng/api';
 import {Table} from 'primeng/table';
 import {delay, finalize, mergeMap} from 'rxjs/operators';
 import {AppResourceService} from '../../core/api/app.resource';
+
 @Component({
-  selector: 'app-configure-rcf',
-  templateUrl: './configure-rcf.component.html',
-  styleUrls: ['./configure-rcf.component.scss'],
+  selector: 'app-role-managment',
+  templateUrl: './role-managment.component.html',
+  styleUrls: ['./role-managment.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ConfigureRcfComponent implements OnInit {
-
+export class RoleManagmentComponent implements OnInit {
+  userList: any;
   constructor(private service: AppResourceService) { }
   ngOnInit(): void {
     const uploadedFileList: any = {
@@ -194,18 +195,18 @@ export class ConfigureRcfComponent implements OnInit {
 //                     uploadedFileList.content = [];
 //                 }
   this.uploadedFileList = uploadedFileList;
- 
+  console.log("localStorage",localStorage.getItem("users"));
+  if(localStorage.getItem("users") !== null && localStorage.getItem("users") !== undefined){
+    console.log("sssssss",localStorage.getItem("users"));
+    const uList = localStorage.getItem("users");
+    this.userList =  [{"id":45,"name":"nshah","label":"admin","description":"This role enables the user to see new Angular UI ","permissions":[]},{"id":51,"name":"nshah0","label":"admin","description":"This role enables the user to see new Angular UI","permissions":[]},{"id":53,"name":"nshah1","label":"admin","description":"This role enables the user to see new Angular UI","permissions":[]},{"id":54,"name":"nshah2","label":"admin","description":"This role enables the user to see new Angular UI","permissions":[]},{"id":55,"name":"nshah3","label":"admin","description":"This role enables the user to see new Angular UI","permissions":[]},{"id":56,"name":"nshah4","label":"admin","description":"This role enables the user to see new Angular UI","permissions":[]},{"id":57,"name":"nshah5","label":"admin","description":"This role enables the user to see new Angular UI","permissions":[]},{"id":58,"name":"nshah6","label":"admin","description":"This role enables the user to see new Angular UI","permissions":[]}];
+  } 
 
-
-  // this.service.getApiData().subscribe((response) => {
-  //   console.log("type",response)
-  // });
-
-
-  this.service.getQueryDef("test").subscribe((types) => {
-    console.log("type",types)
+  this.service.getQueryDef("test").subscribe((users) => {
+    console.log("user",users)
+      this.userList = users;
+      localStorage.setItem('users', JSON.stringify(users));
   });
-
 
 
   }

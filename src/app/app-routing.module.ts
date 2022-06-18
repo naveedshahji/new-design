@@ -38,7 +38,7 @@ const routes: Routes = [
   //   path: 'reporting',
   //   loadChildren: () => import('./profile/profile.module').then(m => m.ReportingModule)
   // },
-  { path: '',   redirectTo: '/valuation/home', pathMatch: 'full' },
+  { path: '',   redirectTo: '/admin/roleManagment', pathMatch: 'full' },
   { path: '**', component: PageErrorComponent },
 ];
 @NgModule({

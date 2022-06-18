@@ -16,6 +16,7 @@ import {ToastModule} from 'primeng/toast';
 import {TableModule} from 'primeng/table';
 import { EvolvReportingModule } from './reporting/evolv-reporting.module';
 import { EvolvValuationgModule } from './valuation/evolv-valuation.module';
+import { EvolvAdminModule } from './admin/evolv-admin.module';
 import { AppRoutingModule } from './app-routing.module';
  
 @NgModule({
@@ -33,6 +34,7 @@ import { AppRoutingModule } from './app-routing.module';
     TableModule,
     EvolvReportingModule,
     EvolvValuationgModule,
+    EvolvAdminModule,
     AppRoutingModule
   ],
   providers: [MainMenuComponent,

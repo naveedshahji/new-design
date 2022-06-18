@@ -1,9 +1,6 @@
 {
-    "/evolv/*": {
-        "target": "http://localhost:8080",
-        "secure": false,
-        "pathRewrite": {
-             "/evolv-ui/api": "/evolv"
-        }
+    "/evolv/global/*": {
+       "target": "http://localhost:8080",
+        "secure": false
     }
 }
