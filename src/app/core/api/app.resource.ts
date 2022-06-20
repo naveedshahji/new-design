@@ -54,8 +54,8 @@ export class AppResourceService {
     //     return this.http.get<IQueryDef>('https://tomcat-stbftr.evolvsuite.com/app/model/data');
     // }
 
-    getQueryDef(name: string): Observable<IQueryDef> {
-        return this.http.get<IQueryDef>(apis.roleManagment);
+    getQueryDef(name: string): Observable<any> {
+        return this.http.get<any>(apis.roleManagment);
     }
 
     // getUploadedFiles(query: TUploadedFilesQuery): Observable<IPageableResult<IUploadedFile>> {
