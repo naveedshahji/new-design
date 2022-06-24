@@ -37,29 +37,60 @@ export class EdtResource {
         };
     }
 
-    // @httpGet(apis.queryTypes)
-    // async getQueryTypes(@requestParam('category') category: string): Promise<string[]> {
-    //     return this.service.getQueryTypes(category);
+ 
+
+    @httpGet(apis.queryTypes)
+    async getQueryTypes(@requestParam('category') category: string): Promise<string[]> {
+        return this.service.getQueryTypes(category);
+    }
+
+
+    @httpPost(apis.downloadData)
+    async downloadData(@response() res: express.Response, @requestBody() body: any): Promise<any> {
+        // throw new RestError('No data found',null,410);
+        await downloadSample(res, 2);
+    }
+
+    @httpGet(apis.summaryOld)
+    async getSummaryData(@requestParam('id') id: string): Promise<any> {
+        return delayPromise(this.service.getSummaryData(+id), 1000);
+    }
+
+    @httpGet(apis.summary)
+    async getSummary(@requestParam('id') id: string): Promise<any[]> {
+        return delayPromise(this.service.getSummary(+id), 1000);
+    }
+
+    // @httpPost(apis.uploadData, upload.single('file'))
+    // async upload(@request() req: Express.Request,
+    //              @requestBody() body: Stringify<TUploadFormData>): Promise<IStatused> {
+    //     const formData = <TUploadFormData>DataConverter.traverseInputCopy(body, true);
+    //     console.warn('Upload:', req.file.originalname, formData);
+    //     // if ((EdtResource.errCounter++) % 2) {
+    //     //     throw new RestError(`File [${req.file.originalname}] could not be processed
+    //     //     because it has a different posting date than the one selected in the UI. `, 409);
+    //     // }
+    //     await delayPromise(0, 2000);
+    //     this.service.uploadFile(req.file.originalname, formData);
+    //     return {status: 'SUCCESS'};
     // }
 
-    // @httpGet(apis.queryDef)
-    // async getQueryDef(@queryParam() query: TQueryDefQuery): Promise<IQueryDef> {
-    //     return this.service.getQueryDef(query);
+    
+    // @httpPost(apis.uploadData)
+    // async approveFile(@requestParam('fileId') fileId: string,
+    //                   @queryParam() query: IApproveOrRejectQuery,
+    //                   @requestBody() body: any): Promise<IStatused> {
+    //     this.service.approveOrRejectFile(+fileId, 'approve', query);
+    //     return {status: 'SUCCESS'};
     // }
 
-    // @httpPost(apis.downloadData)
-    // async downloadData(@response() res: express.Response, @requestBody() body: TQueryDefExec): Promise<any> {
-    //     // throw new RestError('No data found',null,410);
-    //     await downloadSample(res, 2);
+    // @httpPost(apis.uploadData)
+    // async rejectFile(@requestParam('fileId') fileId: string,
+    //                  @queryParam() query: IApproveOrRejectQuery,
+    //                  @requestBody() body: any): Promise<IStatused> {
+    //     this.service.approveOrRejectFile(+fileId, 'reject', query);
+    //     return {status: 'SUCCESS'};
     // }
 
-    // @httpGet(apis.summaryOld)
-    // async getSummaryData(@requestParam('id') id: string): Promise<ISummaryData> {
-    //     return delayPromise(this.service.getSummaryData(+id), 1000);
-    // }
 
-    // @httpGet(apis.summary)
-    // async getSummary(@requestParam('id') id: string): Promise<ISummaryResponseItem[]> {
-    //     return delayPromise(this.service.getSummary(+id), 1000);
-    // }
 }

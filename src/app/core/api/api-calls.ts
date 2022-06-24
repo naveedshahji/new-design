@@ -7,6 +7,7 @@ export const apis = {
     downloadData: '/evolv/ods/queries/queryset/execute',
     uploadData: '/evolv/ods/fileupload/upload',
     uploadedFiles: '/evolv/ods/fileuploadlogs/search/all?size=14&page=0&sort=uploadTime,asc&tenant=TENANT_DEV',
+    roleManagments: '/evolv/ods/queries/EDT/querysets/names?tenant=ES20CLIENT27',
     roleManagment: '/evolv/global/NSHAH/admin/role/custom?_=1655392857256',
     uploadedFilesFilter: '/evolv/ods/fileuploadlogs/search/likefilename',
     uploadedFile: '/evolv/ods/fileuploadlogs/:id',

@@ -54,6 +54,7 @@ img{
     width: 25px;
     height: 25px;
     border-radius: 20px;
+    background-color: #0dcaf0;
 }
 .user-name{
     text-decoration: none;
@@ -66,4 +67,7 @@ img{
     padding: 2px;
     margin: 2px;
     border: 2px solid darkgray;
+    transform: scale(1.005);
+    cursor: pointer;
+
 }

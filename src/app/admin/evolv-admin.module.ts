@@ -6,6 +6,7 @@ import {TableModule} from 'primeng/table';
 import { RouterTestingModule } from "@angular/router/testing";
 import {HttpClientModule} from '@angular/common/http';
 import { RoleManagmentComponent } from './role-managment/role-managment.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [RoleManagmentComponent],
@@ -14,7 +15,8 @@ import { RoleManagmentComponent } from './role-managment/role-managment.componen
     TableModule,
     adminModule,
     RouterTestingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   exports: [RouterModule]

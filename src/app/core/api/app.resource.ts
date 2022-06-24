@@ -45,17 +45,32 @@ export class AppResourceService {
     // }
     
 
-    // getQueryDef(name: string): Observable<IQueryDef> {
-    //     console.log("name",name)
-    //     return this.http.get<IQueryDef>(apis.uploadedFiles);
-    // }
+    getQueryDef(name: string): Observable<IQueryDef> {
+        console.log("name",name)
+        return this.http.get<IQueryDef>(apis.uploadedFiles);
+    }
 
     // getApiData(): Observable<IQueryDef> {
     //     return this.http.get<IQueryDef>('https://tomcat-stbftr.evolvsuite.com/app/model/data');
     // }
+    getSummary(id: number): Observable<ISummaryResponseItem[]> {
+        return this.http.get<ISummaryResponseItem[]>(Url.create(apis.summary, {
+            id: id.toString()
+        }));
+    }
 
-    getQueryDef(name: string): Observable<any> {
-        return this.http.get<any>(apis.roleManagment);
+    getUploadedFile(id: number): Observable<IUploadedFile> {
+        return this.http.get<IUploadedFile>(
+            Url.create(apis.uploadedFile, {id: id.toString()}));
+    }
+
+
+    // getQueryDef(name: string): Observable<any> {
+    //     return this.http.get<any>(apis.roleManagment);
+    // }
+
+    getFiles(): Observable<any> {
+        return this.http.get<any>(apis.roleManagments);
     }
 
     // getUploadedFiles(query: TUploadedFilesQuery): Observable<IPageableResult<IUploadedFile>> {

@@ -18,7 +18,7 @@ import { EvolvReportingModule } from './reporting/evolv-reporting.module';
 import { EvolvValuationgModule } from './valuation/evolv-valuation.module';
 import { EvolvAdminModule } from './admin/evolv-admin.module';
 import { AppRoutingModule } from './app-routing.module';
- 
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +35,8 @@ import { AppRoutingModule } from './app-routing.module';
     EvolvReportingModule,
     EvolvValuationgModule,
     EvolvAdminModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [MainMenuComponent,
     PageHeaderComponent,
