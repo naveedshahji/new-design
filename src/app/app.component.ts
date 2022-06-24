@@ -6,4 +6,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'evolv design';
+  name = 'evolv name';
+  description = 'evolv description';
 }

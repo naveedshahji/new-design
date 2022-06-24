@@ -14,24 +14,29 @@ describe('AppComponent', () => {
     }).compileComponents();
   });
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    console.log("title",app)
-    expect(app).toBeTruthy();
-  });
+  // it('should create the app', () => {
+  //   const fixture = TestBed.createComponent(AppComponent);
+  //   const app = fixture.componentInstance;
+  //   console.log("title",app)
+  //   expect(app).toBeTruthy();
+  // });
 
   it(`should have as title 'evolv design'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    console.log("title",app.title)
     expect(app.title).toEqual('evolv design');
   });
 
-  // it('should render title', () => {
-  //   const fixture = TestBed.createComponent(AppComponent);
-  //   fixture.detectChanges();
-  //   const compiled = fixture.nativeElement as HTMLElement;
-  //   expect(compiled.querySelector('.content span')?.textContent).toContain('evolv-design app is running!');
-  // });
+  it(`should have as name 'evolv name'`, () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    expect(app.name).toEqual('evolv name');
+  });
+
+  it(`should have as description 'evolv description'`, () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    expect(app.description).toEqual('evolv description');
+  });
+
 });
