@@ -69,5 +69,33 @@ img{
     border: 2px solid darkgray;
     transform: scale(1.005);
     cursor: pointer;
+}
 
+:host ::ng-deep .p-dialog.p-confirm-dialog {
+    background-color: #bed9f0;
+    padding: 25px;
+}
+
+:host ::ng-deep .p-dialog-content{
+    padding: 25px;
+}
+:host ::ng-deep .p-confirm-dialog-reject{
+    color: #ffffff;
+    background: red;
+    border: 1px solid #2196F3;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    border-radius: 3px;
+
+}
+:host ::ng-deep .p-confirm-dialog-accept {
+    color: #ffffff;
+    background: #2196F3;
+    border: 1px solid #2196F3;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    border-radius: 3px;
+    margin-left: 15px;
 }

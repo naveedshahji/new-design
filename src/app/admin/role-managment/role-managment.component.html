@@ -6,32 +6,34 @@
                 <button type="button" class="evolv-btn" data-bs-toggle="modal" data-bs-target="#newUser">Add user</button>
             </div>
 
-
+--{{userList}}
             <div> 
                 <div #tableContainer>
                 <p-table #table [value]="userList" dataKey="id" rowExpandMode="single"
                 [resizableColumns]="true" columnResizeMode="expand"
-                [lazy]="true" (onLazyLoad)="load($event)" [paginator]="true" [showCurrentPageReport]="true"
+                [lazy]="true" (onLazyLoad)="load()" [paginator]="true" [showCurrentPageReport]="true"
                 [lazyLoadOnInit]="false"
-                [rows]="2" [totalRecords]="150">
+                [rows]="10" [totalRecords]="150">
                         <ng-template pTemplate="header">
                             <tr>
                                 <th style="width: 4em; padding-left: 5px">
                                 </th>
                                 <th style="width: 120px" class="text-start" pSortableColumn="name" pResizableColumn>
                                     NAME
-                                    <p-sortIcon field="name"></p-sortIcon>
-                                    <sup>{{getSortIndex('name')}}</sup>
+                                    <div class="d-inline-block" (click)="getSortIndex('name')">
+                                        <p-sortIcon field="name" ></p-sortIcon>
+                                    </div>    
+                                    <!-- <sup>{{getSortIndex('name')}}</sup> -->
                                 </th>
                                 <th style="width: 120px" class="text-center" pSortableColumn="label" pResizableColumn>
                                     LABEL
                                     <p-sortIcon field="label"></p-sortIcon>
-                                    <sup>{{getSortIndex('label')}}</sup>
+                                    <!-- <sup>{{getSortIndex('label')}}</sup> -->
                                 </th>
                                 <th  pSortableColumn="description" pResizableColumn>
                                     Description
                                     <p-sortIcon field="description"></p-sortIcon>
-                                    <sup>{{getSortIndex('description')}}</sup>
+                                    <!-- <sup>{{getSortIndex('description')}}</sup> -->
                                 </th>
                                 <th  style="width: 30px" pSortableColumn="Description" pResizableColumn>
                                     Actions
@@ -83,7 +85,9 @@
                         
                     </p-table>
                 </div>
-         
+                <p-confirmDialog [style]="{width: '35vw'}"  [baseZIndex]="10000"></p-confirmDialog>
+ 
+                
              <!-- Modal -->
              <div class="modal fade" id="userName" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -136,6 +140,7 @@
               </div>
               
         </div>
+        
         <!-- <div class="text-center p-3">
             <button type="button" class="evolv-btn me-3">Save</button>
             <button type="button" class="evolv-btn me-3">Add Row</button>

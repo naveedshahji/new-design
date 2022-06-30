@@ -14,13 +14,6 @@ describe('AppComponent', () => {
     }).compileComponents();
   });
 
-  // it('should create the app', () => {
-  //   const fixture = TestBed.createComponent(AppComponent);
-  //   const app = fixture.componentInstance;
-  //   console.log("title",app)
-  //   expect(app).toBeTruthy();
-  // });
-
   it(`should have as title 'evolv design'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;

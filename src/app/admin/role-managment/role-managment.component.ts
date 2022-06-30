@@ -3,17 +3,24 @@ import { JsonContent } from 'inversify-express-utils';
 import {LazyLoadEvent, SortMeta} from 'primeng/api';
 import {Table} from 'primeng/table';
 import {delay, finalize, mergeMap} from 'rxjs/operators';
+import {Observable} from 'rxjs';
 import {AppResourceService} from '../../core/api/app.resource';
+import { AdminService } from '../services/admin.service';
+import {ConfirmationService} from 'primeng/api';
+import {Message} from 'primeng/api';
+import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
   selector: 'app-role-managment',
   templateUrl: './role-managment.component.html',
   styleUrls: ['./role-managment.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  providers: [ConfirmationService],
+  
 })
 export class RoleManagmentComponent implements OnInit {
 
   //TODO:ALL any type will be changed to type 
+  msgs: Message[] = [];
   userList: any;
   selectedRole: any;
   nm:any;
@@ -21,6 +28,7 @@ export class RoleManagmentComponent implements OnInit {
   desc:any;
   nml:any;
   lbll:any;
+  resList: any;
   descl:any;
   ID:any;
   nameUp:boolean = false;
@@ -32,8 +40,11 @@ export class RoleManagmentComponent implements OnInit {
     {field: 'name', order: -1}
   ];
   spinnerText: any;
-  constructor(private service: AppResourceService) { }
-  ngOnInit(): void {
+  _userList$: Observable<any>;
+  constructor(private service: AppResourceService, private adminService: AdminService, private confirmationService: ConfirmationService,
+    private primengConfig: PrimeNGConfig) { }
+  ngOnInit() {
+    this.primengConfig.ripple = true;
     this.isEdit = false;
     this.ID = "";
    // const x = [{"id":45,"name":"nshah","label":"admin","description":"This role enables the user to see new Angular UI ","permissions":[]},{"id":51,"name":"nshah0","label":"admin","description":"This role enables the user to see new Angular UI","permissions":[]},{"id":53,"name":"nshah1","label":"admin","description":"This role enables the user to see new Angular UI","permissions":[]},{"id":54,"name":"nshah2","label":"admin","description":"This role enables the user to see new Angular UI","permissions":[]},{"id":55,"name":"nshah3","label":"admin","description":"This role enables the user to see new Angular UI","permissions":[]},{"id":56,"name":"nshah4","label":"admin","description":"This role enables the user to see new Angular UI","permissions":[]},{"id":57,"name":"nshah5","label":"admin","description":"This role enables the user to see new Angular UI","permissions":[]},{"id":58,"name":"nshah6","label":"admin","description":"This role enables the user to see new Angular UI","permissions":[]}];
@@ -41,11 +52,11 @@ export class RoleManagmentComponent implements OnInit {
   // console.log("localStorage",localStorage.getItem("users"));
   //[{"id":45,"name":"nshah","label":"admin","description":"This role enables the user to see new Angular UI ","permissions":[]},{"id":51,"name":"nshah0","label":"admin","description":"This role enables the user to see new Angular UI","permissions":[]},{"id":53,"name":"nshah1","label":"admin","description":"This role enables the user to see new Angular UI","permissions":[]},{"id":54,"name":"nshah2","label":"admin","description":"This role enables the user to see new Angular UI","permissions":[]},{"id":55,"name":"nshah3","label":"admin","description":"This role enables the user to see new Angular UI","permissions":[]},{"id":56,"name":"nshah4","label":"admin","description":"This role enables the user to see new Angular UI","permissions":[]},{"id":57,"name":"nshah5","label":"admin","description":"This role enables the user to see new Angular UI","permissions":[]},{"id":58,"name":"nshah6","label":"admin","description":"This role enables the user to see new Angular UI","permissions":[]}]
   if(localStorage.getItem("users") !== null && localStorage.getItem("users") !== undefined){
-    //console.log("sssssss",localStorage.getItem("users"));
-      let uList: any = localStorage.getItem("users");
-      this.loading = false;
-      this.userList = JSON.parse(uList);
-    } 
+ 
+      // let uList: any = localStorage.getItem("users");
+      // this.loading = false;
+      // this.userList = JSON.parse(uList);
+  } 
 
   // this.service.getQueryDef("test").subscribe((users) => {
   //   // console.log("user",users)
@@ -54,20 +65,45 @@ export class RoleManagmentComponent implements OnInit {
   
   // });
 
-  this.service.getFiles().subscribe((users) => {
-      console.log("user",users)
-      // this.userList = (users);
-      // this.loading = false;
-      // localStorage.setItem('users', JSON.stringify(this.userList));
-  });
+  // this.service.getFiles().subscribe((users) => {
+  //     console.log("user",users)
+  //     // this.userList = (users);
+  //     // this.loading = false;
+  //     // localStorage.setItem('users', JSON.stringify(this.userList));
+  // });
 
-    
+
+
+  this.getAllRoles();
+  this.resList.subscribe((users: any) => {
+    return this.successHandle(users);
+    //  console.log("user new user",users)
+    //  that._userList$ =  users;
+    //  that.userList =  users;
+    //  console.log("user new again there",that._userList$)
+    //  that.loading = false;
+    //  localStorage.setItem('users', JSON.stringify(that._userList$));
+   });
+   console.log("now",this._userList$);
+ 
   //this.userList = [{"id":45,"name":"nshah","label":"admin","description":"This role enables the user to see new Angular UI ","permissions":[]},{"id":51,"name":"nshah0","label":"admin","description":"This role enables the user to see new Angular UI","permissions":[]},{"id":53,"name":"nshah1","label":"admin","description":"This role enables the user to see new Angular UI","permissions":[]},{"id":54,"name":"nshah2","label":"admin","description":"This role enables the user to see new Angular UI","permissions":[]},{"id":55,"name":"nshah3","label":"admin","description":"This role enables the user to see new Angular UI","permissions":[]},{"id":56,"name":"nshah4","label":"admin","description":"This role enables the user to see new Angular UI","permissions":[]},{"id":57,"name":"nshah5","label":"admin","description":"This role enables the user to see new Angular UI","permissions":[]},{"id":58,"name":"nshah6","label":"admin","description":"This role enables the user to see new Angular UI","permissions":[]}];
-  
+  console.log("this",this._userList$)
   }
 
+  getAllRoles(){
+     this.resList = this.adminService.getAllRoles();
+    
+  }
+
+  successHandle(data:any){
+     console.log("in suncces handle",data) 
+    this.userList = data;
+    console.log("in suncces handle",this.userList) 
+    console.log(this.userList) //4. logs data when it comes
+}
+
   getSortIndex(field: string): any {
-    //console.log("user list", field)
+    console.log("getSortIndex ",this._userList$)
     if(field ==='name'){
       this.nameUp = !this.nameUp;
        this.userList.sort((a:any,b:any) => a.name.toLowerCase() > b.name.toLowerCase() ? (this.nameUp?-1:1) : (this.nameUp?1:-1));
@@ -109,14 +145,6 @@ export class RoleManagmentComponent implements OnInit {
     this.isEdit = false;
   }
 
-  delete(id:any){
-
-    this.userList = this.userList.filter((x: any) => {
-      return x.id != id;
-    })
-    localStorage.setItem('users', JSON.stringify(this.userList));
-  }
-
   edit(id:any){
     this.selectedRole = this.userList.filter((x: any) => {
       return x.id === id;
@@ -138,6 +166,29 @@ export class RoleManagmentComponent implements OnInit {
     this.descl = this.selectedRole[0].description;
   }
 
+  // delete(id:any){
+
+  //   this.userList = this.userList.filter((x: any) => {
+  //     return x.id != id;
+  //   })
+  //   localStorage.setItem('users', JSON.stringify(this.userList));
+  // }
+  delete(id:any) {
+    console.log("hhhh", this.confirmationService)
+    this.confirmationService.confirm({
+        message: 'Do you want to delete this record?',
+        header: 'Delete Confirmation',
+        icon: 'pi pi-info-circle',
+        accept: () => {
+            this.userList = this.userList.filter((x: any) => { return x.id != id;});
+            localStorage.setItem('users', JSON.stringify(this.userList));
+            this.msgs = [{severity:'info', summary:'Confirmed', detail:'Record deleted'}];
+        },
+        reject: () => {
+            this.msgs = [{severity:'info', summary:'Rejected', detail:'You have rejected'}];
+        }
+    });
+}
 
   @ViewChild(Table, {static: true}) table: any;
 
@@ -156,7 +207,8 @@ export class RoleManagmentComponent implements OnInit {
   //     return idx === -1 ? '' : (idx + 1).toString();
   // }
 
-  load(event?: LazyLoadEvent|undefined) {
+  load() {
+    console.log("hhhhhhhh")
       // if (!event) {
       //     event = this.table.createLazyLoadMetadata();
       // }
