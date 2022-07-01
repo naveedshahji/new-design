@@ -69,10 +69,10 @@ export class AppResourceService {
     //     return this.http.get<any>(apis.roleManagment);
     // }
 
-    addRoles(body:any): Observable<any> {
-        return this.http.put(apis.addRole, body);
-        //put<any>(apis.addRole);
-    }
+    // addRoles(body:any): Observable<any> {
+    //     return this.http.put(apis.addRole, body);
+    //     //put<any>(apis.addRole);
+    // }
 
     // getUploadedFiles(query: TUploadedFilesQuery): Observable<IPageableResult<IUploadedFile>> {
     //     return this.http.get<IPageableResult<IUploadedFile>>(

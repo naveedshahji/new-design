@@ -21,9 +21,9 @@ export class AdminService {
   }
 
   // Simulate PUT /Admins/:id
-  updateAdmin(admin: any): Observable<any> {
-    return this.api.updateAdmin(admin);
-  }
+  // updateAdmin(admin: any): Observable<any> {
+  //   return this.api.updateAdmin(admin);
+  // }
 
   // Simulate GET /Admins
   getAllRoles(): Observable<any[]> {
@@ -36,9 +36,8 @@ export class AdminService {
   }
 
   // Toggle complete
-  toggleAdminComplete(admin: any) {
-    admin.complete = !admin.complete;
-    return this.api.updateAdmin(admin);
+  updateRole(url: any, role: any) {
+    return this.api.updateRole(role, url);
   }
 
 }

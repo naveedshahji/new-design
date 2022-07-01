@@ -8,7 +8,8 @@ import {AppResourceService} from '../../core/api/app.resource';
 import { AdminService } from '../services/admin.service';
 import {ConfirmationService} from 'primeng/api';
 import {Message} from 'primeng/api';
-import { PrimeNGConfig } from 'primeng/api';
+import { PrimeNGConfig } from 'primeng/api'; 
+import { apis } from 'src/app/core/api/api-calls';
 
 @Component({
   selector: 'app-role-managment',
@@ -115,12 +116,28 @@ export class RoleManagmentComponent implements OnInit {
      // console.log("user lst", this.userList)
   }
 
+//   updateRole(){
+//     this.resList = this.adminService.updateRole(['role','ddd']);  
+//  }
   create(){
-    //console.log("aaaaa", this.nm)
+    const a = this.adminService.updateRole(apis.updateRole,  [{name: "fds", label: "dds", description: "tf"}]);
+
+    a.subscribe((ab: any) => {
+      console.log("aaaaaa",ab);
+ 
+      //  console.log("user new user",users)
+      //  that._userList$ =  users;
+      //  that.userList =  users;
+      //  console.log("user new again there",that._userList$)
+      //  that.loading = false;
+      //  localStorage.setItem('users', JSON.stringify(that._userList$));
+     })
     if(!this.isEdit){
-        const newUser = {"id":1+this.userList.length+this.nm,"name":this.nm,"label":this.lbl,"description":this.desc,"permissions":[]};
-        this.userList.unshift(newUser);
+       // const newUser = {"id":1+this.userList.length+this.nm,"name":this.nm,"label":this.lbl,"description":this.desc,"permissions":[]};
+        //this.userList.unshift(newUser);
     } else {
+
+
       this.userList = this.userList.map((list:any) => {
         if (list.id === this.ID) {
           return {...list, name: this.nm, label: this.lbl, description: this.desc};

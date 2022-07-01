@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 // import { environment } from 'environments/environment';
 // import { Http, Response } from '@angular/http'; 
-import {HttpClient} from '@angular/common/http';
+import {HttpClient,HttpHeaders} from '@angular/common/http';
 import {Observable, of, throwError, map, catchError} from 'rxjs';
 import {
   DEFAULT_QUERY_DEF_CATEGORY,
@@ -19,10 +19,14 @@ import {
 } from '../../core/api/api-calls';
 // import { map, catchError } from 'rxjs/operators';
 const API_URL = "environment.apiUrl";
-
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json',
+    Authorization: 'my-auth-token'
+  })
+};
 @Injectable()
 export class ApiService {
-
   constructor(
     private http: HttpClient
   ) {
@@ -31,7 +35,7 @@ export class ApiService {
 
   public getAllRoles(): Observable<any[]> {
     return this.http
-      .get(apis.roleManagment)
+      .get(apis.roleManagment, httpOptions)
       .pipe(map((response: any) => response),
       catchError(err => {
         console.log('caught mapping error and rethrowing', err);
@@ -72,10 +76,11 @@ export class ApiService {
     }))
   }
 
-  public updateAdmin(admin: any): Observable<any> {
+  public updateRole(role: any, url:any): Observable<any> {
+    console.log("Fffffff",role, url)
     return this.http
-      .put(API_URL + '/Admin/' + admin.id, admin)
-      .pipe(map((response: any) => response.json()),
+      .put(url, role, httpOptions)
+      .pipe(map((response: any) => response),
       catchError(err => {
         console.log('caught mapping error and rethrowing', err);
         return  throwError(() => new Error('test'));
