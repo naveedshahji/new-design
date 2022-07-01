@@ -15,6 +15,7 @@ export class KeycloakHttpInterceptor implements HttpInterceptor {
         request: HttpRequest<any>,
         next: HttpHandler
     ): Observable<HttpEvent<any>> {
+        console.log("33333333333333333")
         if (environment.production) {
             return fromPromise(KeycloakService.getToken())
                 .pipe(switchMap((token) => {
