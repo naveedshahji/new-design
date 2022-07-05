@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {UserInfo} from './user-info';
-import {CookieService} from 'angular2-cookie/core';
+// import {CookieService} from 'angular2-cookie/core';
 import {environment} from '../../environments/environment';
 
 declare var Keycloak: any;
@@ -15,7 +15,7 @@ export class KeycloakService {
         if (environment.production) {
             return KeycloakService.initProduction();
         } else {
-            return new Promise((resolve, reject) => resolve());
+            return new Promise((resolve, reject) => resolve('0'));
         }
     }
 
@@ -31,13 +31,13 @@ export class KeycloakService {
         kc.clientId = kc.resource;
         kc.url = kc['auth-server-url'];
 
-        const service: any = new CookieService();
-        const fimClient = service.get('fimTenant');
-        // Retrieving fimClient cookie
-        if (fimClient) {
-            console.log('Found FIM Tenant cookie [' + fimClient + ']');
-            kc.realm = fimClient + '-idp';
-        }
+        // const service: any = new CookieService();
+        // const fimClient = service.get('fimTenant');
+        // // Retrieving fimClient cookie
+        // if (fimClient) {
+        //     console.log('Found FIM Tenant cookie [' + fimClient + ']');
+        //     kc.realm = fimClient + '-idp';
+        // }
 
         const keycloakAuth: any = new Keycloak(kc);
         KeycloakService.auth.loggedIn = false;
@@ -80,7 +80,7 @@ export class KeycloakService {
                             this.userInfo.lastlogin.substring(this.userInfo.lastlogin.indexOf('=') + 1,
                                 this.userInfo.lastlogin.lastIndexOf('"'));
 
-                        resolve();
+                        resolve('0');
 
                     });
                 })

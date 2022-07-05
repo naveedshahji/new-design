@@ -9,6 +9,7 @@ export const apis = {
     uploadedFiles: '/evolv/ods/fileuploadlogs/search/all?size=14&page=0&sort=uploadTime,asc&tenant=TENANT_DEV',
     roleManagment: '/evolv/global/NSHAH/admin/role/custom?_=1655392857256',
     updateRole: '/evolv/global/NSHAH/admin/role/bulk',
+    deleteRole: '/evolv/global/NSHAH/admin/role/delete',
     uploadedFilesFilter: '/evolv/ods/fileuploadlogs/search/likefilename',
     uploadedFile: '/evolv/ods/fileuploadlogs/:id',
     uploadedFilesSearch: '/evolv/ods/fileuploadlogs/search/byfilename',
