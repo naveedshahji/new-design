@@ -77,6 +77,7 @@ export class RoleManagmentComponent implements OnInit {
 
   this.getAllRoles();
   this.resList.subscribe((users: any) => {
+    this.loading = false;
     return this.successHandle(users);
     //  console.log("user new user",users)
     //  that._userList$ =  users;
@@ -92,6 +93,7 @@ export class RoleManagmentComponent implements OnInit {
   }
 
   getAllRoles(){
+     this.loading = true;
      this.resList = this.adminService.getAllRoles();
     
   }
@@ -104,7 +106,7 @@ export class RoleManagmentComponent implements OnInit {
 }
 
   getSortIndex(field: string): any {
-    console.log("getSortIndex ",this._userList$)
+    console.log("getSortIndex ",field)
     if(field ==='name'){
       this.nameUp = !this.nameUp;
        this.userList.sort((a:any,b:any) => a.name.toLowerCase() > b.name.toLowerCase() ? (this.nameUp?-1:1) : (this.nameUp?1:-1));
@@ -120,11 +122,11 @@ export class RoleManagmentComponent implements OnInit {
 //     this.resList = this.adminService.updateRole(['role','ddd']);  
 //  }
   create(){
-    const a = this.adminService.updateRole(apis.updateRole,  [{name: "fds", label: "dds", description: "tf"}]);
+    const res = this.adminService.updateRole(apis.updateRole,  [{name: this.nm, label: this.lbl, description: this.desc}]);
 
-    a.subscribe((ab: any) => {
-      console.log("aaaaaa",ab);
- 
+    res.subscribe((newUser: any) => {
+      console.log("aaaaaa",newUser);
+      this.userList.unshift(newUser[0]);
       //  console.log("user new user",users)
       //  that._userList$ =  users;
       //  that.userList =  users;
@@ -132,18 +134,18 @@ export class RoleManagmentComponent implements OnInit {
       //  that.loading = false;
       //  localStorage.setItem('users', JSON.stringify(that._userList$));
      })
-    if(!this.isEdit){
-       // const newUser = {"id":1+this.userList.length+this.nm,"name":this.nm,"label":this.lbl,"description":this.desc,"permissions":[]};
-        //this.userList.unshift(newUser);
-    } else {
+    // if(!this.isEdit){
+    //    const newUser = {"id":1+this.userList.length+this.nm,"name":this.nm,"label":this.lbl,"description":this.desc,"permissions":[]};
+    //     this.userList.unshift(newUser);
+    // } else {
 
 
-      this.userList = this.userList.map((list:any) => {
-        if (list.id === this.ID) {
-          return {...list, name: this.nm, label: this.lbl, description: this.desc};
-        }
-        return list;
-      });
+    //   this.userList = this.userList.map((list:any) => {
+    //     if (list.id === this.ID) {
+    //       return {...list, name: this.nm, label: this.lbl, description: this.desc};
+    //     }
+    //     return list;
+    //   });
       // const index = this.userList.findIndex((object:any) => {
       //   return object.id === this.ID;
       // });
@@ -153,7 +155,6 @@ export class RoleManagmentComponent implements OnInit {
       //   this.userList[index].label = this.lbl;
       //   this.userList[index].description = this.desc;
       // }
-    }
     localStorage.setItem('users', JSON.stringify(this.userList));
     this.nm = "";
     this.lbl = "";
@@ -197,9 +198,18 @@ export class RoleManagmentComponent implements OnInit {
         header: 'Delete Confirmation',
         icon: 'pi pi-info-circle',
         accept: () => {
-            this.userList = this.userList.filter((x: any) => { return x.id != id;});
-            localStorage.setItem('users', JSON.stringify(this.userList));
-            this.msgs = [{severity:'info', summary:'Confirmed', detail:'Record deleted'}];
+          const res = this.adminService.deleteRoleById(apis.deleteRole, id);
+          res.subscribe((deleted: any) => {
+            console.log("aaaaaa",deleted);
+            if(deleted == 'SUCCESS'){
+              this.userList = this.userList.filter((x: any) => { return x.id != id;});
+              localStorage.setItem('users', JSON.stringify(this.userList));
+              this.msgs = [{severity:'info', summary:'Confirmed', detail:'Record deleted'}];
+            } else{
+              this.msgs = [{severity:'info', summary:'Error', detail:'Due to some error unable to delete.'}];
+            }
+           })
+    
         },
         reject: () => {
             this.msgs = [{severity:'info', summary:'Rejected', detail:'You have rejected'}];

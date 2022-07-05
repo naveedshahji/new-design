@@ -9,15 +9,16 @@ import { RoleManagmentComponent } from './role-managment/role-managment.componen
 import { FormsModule } from '@angular/forms';
 import { AdminService } from './services/admin.service';
 import { ApiService } from './services/api.service';
-
 import { ButtonModule } from 'primeng/button';
 import { MessagesModule } from 'primeng/messages';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} 
       from '@angular/platform-browser/animations';
+import { UserManagmentComponent } from './user-managment/user-managment.component';
+import { ProductService } from './user-managment/productservice';
 @NgModule({
-  declarations: [RoleManagmentComponent],
+  declarations: [RoleManagmentComponent, UserManagmentComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -28,7 +29,7 @@ import {BrowserAnimationsModule}
     HttpClientModule,
     FormsModule,ButtonModule,MessagesModule,ConfirmDialogModule
   ],
-  providers: [AdminService, ApiService],
+  providers: [AdminService, ApiService, ProductService],
   exports: [RouterModule]
 })
 export class EvolvAdminModule { }

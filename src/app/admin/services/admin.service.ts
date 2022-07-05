@@ -16,8 +16,8 @@ export class AdminService {
   }
 
   // Simulate DELETE /Admins/:id
-  deleteAdminById(adminId: number): Observable<any> {
-    return this.api.deleteAdminById(adminId);
+  deleteRoleById(url:any, id: number): Observable<any> {
+    return this.api.deleteRoleById(url, id);
   }
 
   // Simulate PUT /Admins/:id

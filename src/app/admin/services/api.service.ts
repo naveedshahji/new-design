@@ -91,12 +91,19 @@ export class ApiService {
     }))
   }
 
-  public deleteAdminById(adminId: number): Observable<null> {
+  public deleteRoleById(url: any,id: number): Observable<null> {
     return this.http
-      .delete(API_URL + '/Admi/' + adminId)
-      .pipe(map((response: any) => response.json()))
+      .post(url, [id.toString()], httpOptions)
+      .pipe(map((response: any) => response))
       //.catch(this.handleError);
   }
+
+  // public deleteRoleById(adminId: number): Observable<null> {
+  //   return this.http
+  //     .delete(API_URL + '/Admi/' + adminId)
+  //     .pipe(map((response: any) => response.json()))
+  //     //.catch(this.handleError);
+  // }
 
   private handleError (error: Response | any) {
     console.error('ApiService::handleError', error);

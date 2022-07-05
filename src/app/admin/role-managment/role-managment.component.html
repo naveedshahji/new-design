@@ -12,25 +12,23 @@
                 <p-table #table [value]="userList" dataKey="id" rowExpandMode="single"
                 [resizableColumns]="true" columnResizeMode="expand"
                 [lazy]="true" (onLazyLoad)="load()" [paginator]="true" [showCurrentPageReport]="true"
-                [lazyLoadOnInit]="false"
+                [lazyLoadOnInit]="false" [loading]="loading" loadingIcon="pi pi-spin pi-spinner loading-icon-size"
                 [rows]="10" [totalRecords]="150">
                         <ng-template pTemplate="header">
                             <tr>
                                 <th style="width: 4em; padding-left: 5px">
                                 </th>
-                                <th style="width: 120px" class="text-start" pSortableColumn="name" pResizableColumn>
+                                <th style="width: 120px" class="text-start" (click)="getSortIndex('name')" pSortableColumn="name" pResizableColumn>
                                     NAME
-                                    <div class="d-inline-block" (click)="getSortIndex('name')">
                                         <p-sortIcon field="name" ></p-sortIcon>
-                                    </div>    
                                     <!-- <sup>{{getSortIndex('name')}}</sup> -->
                                 </th>
-                                <th style="width: 120px" class="text-center" pSortableColumn="label" pResizableColumn>
+                                <th style="width: 120px" class="text-center" (click)="getSortIndex('label')" pSortableColumn="label" pResizableColumn>
                                     LABEL
                                     <p-sortIcon field="label"></p-sortIcon>
                                     <!-- <sup>{{getSortIndex('label')}}</sup> -->
                                 </th>
-                                <th  pSortableColumn="description" pResizableColumn>
+                                <th  pSortableColumn="description" (click)="getSortIndex('description')" pResizableColumn>
                                     Description
                                     <p-sortIcon field="description"></p-sortIcon>
                                     <!-- <sup>{{getSortIndex('description')}}</sup> -->
