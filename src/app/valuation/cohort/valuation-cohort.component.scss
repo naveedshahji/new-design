@@ -1,0 +1,87 @@
+.page-title {
+    font-size: 18px;
+    color: #231f20;
+    font-weight: bold;
+    font-family: 'Latobold', sans-serif;
+    padding: 4px 0 18px 0px;
+    margin: 0 15px 20px 15px;
+    border-bottom: 1px solid #d9d9d9;
+}
+.page-sub-title {
+    font-size: 18px;
+    color: #231f20;
+    font-weight:lighter;
+    font-family:'Lato', sans-serif;
+    padding: 0px 0 18px 0px;
+    margin: 0 15px 20px 15px;
+    padding-left: 10px;
+    
+    //border-bottom: 1px solid #d9d9d9;
+}
+.table-header {
+    background-image: none;
+    background-color: #5e9dc0!important;
+    color: #FFF;
+    border-bottom: 1px solid #4b7e99 !important;
+}
+.valuation-sub {
+    label{
+        font-size: 12px;
+        padding: 0px 20px 20px 5px;
+    }
+}
+th{
+    font-family: 'Latobold', sans-serif;
+    font-weight: bold;
+    font-size: 11px;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 15px 21px 15px 15px;
+    border-bottom: 1px solid #4b7e99 !important;
+}
+
+
+  
+  div.container {
+    border-radius: 5px;
+    margin: 0 0 0 0;
+  }
+  .row{
+      margin-left: 10px;
+  }
+  label,input,select{
+      font-size: 13px;
+      width: 80%;
+  }
+  .input-group-append {
+    cursor: pointer;
+  }
+  .inline-input{
+      display: flex;
+      width: 100%;
+  }
+  .lead{
+     font-size: 15px;
+     padding: 10px;
+  }
+ .text-area{
+     padding: 20px;
+ }
+ .evolv-btn{
+     padding: 10px;
+     margin-left: 10px;
+ }
+ .page-sub-title{
+    font-size: 18px;
+    color: #231f20;
+    font-weight:lighter;
+    font-family:'Lato', sans-serif;
+    padding: 0px 0 10px 0px;
+    margin: 0 15px 10px 15px;
+    padding-left: 10px;
+    
+ }
+.evolv-btn{
+    color: #231f20;
+    background-color: #231f20;
+}

@@ -1,0 +1,132 @@
+<nav class="navbar navbar-expand-lg navbar-dark" id="masthead">
+    <div class="container-fluid">
+        <a href="" title="Home">
+            <img src="/assets/img/logo-evolv.png" alt="EVOLV">
+        </a>
+     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+       </button>
+     <div class="collapse navbar-collapse justify-content-center" id="main_nav">
+       
+   
+       <ul class="navbar-nav">
+           <li class="nav-item dropdown">
+               <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">  Data  </a>
+               <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#"> Manage Business Rules </a></li>
+                    <li><a class="dropdown-item" href="#"> Manage Input Data </a></li>
+                </ul>
+           </li>
+           <li class="nav-item dropdown">
+               <a class="nav-link dropdown-toggle" [ngClass]="mainNav === 'accounting' ?  'active' : ''" href="#" data-bs-toggle="dropdown" aria-expanded="false">  Accounting  </a>
+               <ul class="dropdown-menu">
+                 <li><a class="dropdown-item" routerLink="accounting/instrument-browser" routerLinkActive="active" (click)="mainNav = 'accounting'"> Instrument Browser </a></li>
+                 <li class="sub-menu-link"><a class="dropdown-item" href="#"> Administration <i class="sub-option"></i> </a>
+                      <ul class="submenu dropdown-menu">
+                       <li><a class="dropdown-item" href="#">Configure Reporting Custom Fields</a></li>
+                       <li><a class="dropdown-item" href="#">Review Subledger Entries</a></li>
+                    </ul>
+                 </li>
+                 <li class="sub-menu-link"><a class="dropdown-item" href="#"> Execution <i class="sub-option"></i> </a>
+                      <ul class="submenu dropdown-menu">
+                       <li><a class="dropdown-item" href="#">Provision Processing Nodes</a></li>
+                       <li><a class="dropdown-item" href="#">Transfer Data to Evolv Accounting</a></li>
+                       <li><a class="dropdown-item" href="#">Run Engine</a></li>
+                       <li><a class="dropdown-item" href="#">Run GL Process</a></li>
+                       <li><a class="dropdown-item" href="#">View Run Status</a></li>
+                    </ul>
+                 </li>
+               </ul>
+           </li>
+           <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" [ngClass]="mainNav === 'valuation' ?  'active' : ''" href="#" data-bs-toggle="dropdown" aria-expanded="false">  Valuation  </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" routerLink="/valuation/Home" routerLinkActive="active" (click)="mainNav = 'valuation'"> Home </a></li>
+              <li><a class="dropdown-item" routerLink="/valuation/Model" routerLinkActive="active" (click)="mainNav = 'valuation'"> Model Management </a></li>
+              <li><a class="dropdown-item" routerLink="/valuation/Cohort" routerLinkActive="active" (click)="mainNav = 'valuation'"> Cohort Management </a></li>
+              <li class="sub-menu-link"><a class="dropdown-item"> Position Management <i class="sub-option"></i> </a>                    
+                  <ul class="submenu dropdown-menu">
+                      <li><a class="dropdown-item" routerLink="/valuation/UploadPositionFile" routerLinkActive="active" (click)="mainNav = 'valuation'">Upload Position File</a></li>
+                      <li><a class="dropdown-item" routerLink="/valuation/TransferDataToEvolvValuation" routerLinkActive="active" (click)="mainNav = 'valuation'">Transfer Data to EVOLV Valuation</a></li>
+                      <li><a class="dropdown-item" routerLink="/valuation/SearchPositionData" routerLinkActive="active" (click)="mainNav = 'valuation'">Search Position Data</a></li>
+                      <li><a class="dropdown-item" routerLink="/valuation/PositionUpdater" routerLinkActive="active" (click)="mainNav = 'valuation'">Position Updater</a></li>
+                  </ul>
+              </li>
+              <li><a class="dropdown-item" routerLink="/valuation/Assumption" routerLinkActive="active" (click)="mainNav = 'valuation'"> Assumption Management </a></li>
+                <li class="sub-menu-link"><a class="dropdown-item"> Model Execution Management <i class="sub-option"></i> </a>                
+                    <ul class="submenu dropdown-menu">
+                        <li><a class="dropdown-item" routerLink="/valuation/CreateModelExecution" routerLinkActive="active" (click)="mainNav = 'valuation'">Create Model Execution</a></li>
+                        <li><a class="dropdown-item" routerLink="/valuation/SearchModelExecution" routerLinkActive="active" (click)="mainNav = 'valuation'">Search Model Executions</a></li>
+                        <li><a class="dropdown-item" routerLink="/valuation/UploadPositionFile" routerLinkActive="active" (click)="mainNav = 'valuation'">Create Composite Run</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu-link"><a class="dropdown-item"> Discount Scenario Management <i class="sub-option"></i> </a>               
+                    <ul class="submenu dropdown-menu">
+                        <li><a class="dropdown-item" routerLink="/valuation/CreateDiscountScenario" routerLinkActive="active" (click)="mainNav = 'valuation'">Create Discount Scenario  </a></li>
+                        <li><a class="dropdown-item" routerLink="/valuation/SearchDiscountScenario" routerLinkActive="active" (click)="mainNav = 'valuation'">Search Discount Scenarios</a></li>
+                        <li><a class="dropdown-item" routerLink="/valuation/SearchNewBusiness" routerLinkActive="active" (click)="mainNav = 'valuation'">New Business Management</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu-link"><a class="dropdown-item"> New Business Management <i class="sub-option"></i> </a>               
+                    <ul class="submenu dropdown-menu">
+                        <li><a class="dropdown-item" routerLink="/valuation/CreateNewBusiness" routerLinkActive="active" (click)="mainNav = 'valuation'">Create New Business  </a></li>
+                        <li><a class="dropdown-item" routerLink="/valuation/SearchNewBusiness" routerLinkActive="active" (click)="mainNav = 'valuation'">Search New Business</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" [ngClass]="mainNav === 'reporting' ?  'active' : ''" href="#" data-bs-toggle="dropdown" aria-expanded="false">  Reporting  </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" routerLink="/reporting/configurercf" routerLinkActive="active" (click)="mainNav = 'reporting'"> Home </a></li>
+              <li><a class="dropdown-item" routerLink="/reporting/configurercf" routerLinkActive="active" (click)="mainNav = 'reporting'"> Shared Reports </a></li>
+              <li><a class="dropdown-item" routerLink="/reporting/configurercf" routerLinkActive="active" (click)="mainNav = 'reporting'"> Custom Reports </a></li>
+              <li><a class="dropdown-item" routerLink="/reporting/configurercf" routerLinkActive="active" (click)="mainNav = 'reporting'"> My Reports </a></li>
+              <li><a class="dropdown-item" routerLink="/reporting/configurercf" routerLinkActive="active" (click)="mainNav = 'reporting'"> Configure Reporting Custom Fields </a></li>
+              <li><a class="dropdown-item" routerLink="/reporting/configurercf" routerLinkActive="active" (click)="mainNav = 'reporting'"> MicroStrategy Office Installation </a></li>
+            </ul>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">  Admin  </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#"> Change Password </a></li>
+              <li><a class="dropdown-item" href="#"> Product Documents </a></li>
+              <li><a class="dropdown-item" href="#"> Evolv Data Tool Installation </a></li>
+              <li><a class="dropdown-item" href="#"> Load Evolv Data </a></li>
+              <li><a class="dropdown-item" href="#"> Reporting Reference Data </a></li>
+              <li><a class="dropdown-item" href="#"> Update Disclosure Data </a></li>
+              <li><a class="dropdown-item" href="#"> Permission Editor </a></li>
+              <li><a class="dropdown-item" routerLink="/admin/roleManagment" routerLinkActive="active" (click)="mainNav = 'reporting'"> Role Management </a></li>
+              <li><a class="dropdown-item" routerLink="/admin/userManagment" routerLinkActive="active" (click)="mainNav = 'reporting'"> User Management </a></li>
+              <li><a class="dropdown-item" href="#"> User Audit Reports </a></li>              
+              <li class="sub-menu-link"><a class="dropdown-item" href="#"> Model Management <i class="sub-option"></i> </a>               
+                <ul class="submenu dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Model Status  </a></li>
+                    <li><a class="dropdown-item" href="#">Model Permission  </a></li>
+                </ul>
+            </li>
+            <li><a class="dropdown-item" href="#"> Extension Package Deployer </a></li>
+            <li><a class="dropdown-item" href="#"> Software Development Kit </a></li>
+            <li><a class="dropdown-item" href="#"> Query Data Browser </a></li>
+            </ul>
+        </li>
+       </ul>
+   
+     </div>
+     <a href="" title="Home">
+        <img src="/assets/img/ssc-primatics-head-logo.png" alt="EVOLV">
+    </a>
+    </div>
+    
+<script type="text/javascript">
+            /////// Prevent closing from click inside dropdown
+            // document.querySelectorAll('.dropdown-menu').forEach(function(element){
+            //     element.addEventListener('click', function (e) {
+            //       e.stopPropagation();
+            //     });
+            // })
+    
+    
+    
+    </script>
+   </nav>

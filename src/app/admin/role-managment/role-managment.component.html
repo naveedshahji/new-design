@@ -1,0 +1,153 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12"> 
+            <h1 class="page-title mt-3">Role Management</h1>
+            <div class="text-end">
+                <button type="button" class="evolv-btn" data-bs-toggle="modal" data-bs-target="#newUser">Add user</button>
+            </div>
+
+
+            <div> 
+                <div #tableContainer>
+                <p-table #table [value]="userList" dataKey="id" rowExpandMode="single"
+                [resizableColumns]="true" columnResizeMode="expand"
+                [lazy]="true" (onLazyLoad)="load()" [paginator]="true" [showCurrentPageReport]="true"
+                [lazyLoadOnInit]="false" [loading]="loading" loadingIcon="pi pi-spin pi-spinner loading-icon-size"
+                [rows]="10" [totalRecords]="150">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th style="width: 4em; padding-left: 5px">
+                                </th>
+                                <th style="width: 120px" class="text-start" (click)="getSortIndex('name')" pSortableColumn="name" pResizableColumn>
+                                    NAME
+                                        <p-sortIcon field="name" ></p-sortIcon>
+                                    <!-- <sup>{{getSortIndex('name')}}</sup> -->
+                                </th>
+                                <th style="width: 120px" class="text-center" (click)="getSortIndex('label')" pSortableColumn="label" pResizableColumn>
+                                    LABEL
+                                    <p-sortIcon field="label"></p-sortIcon>
+                                    <!-- <sup>{{getSortIndex('label')}}</sup> -->
+                                </th>
+                                <th  pSortableColumn="description" (click)="getSortIndex('description')" pResizableColumn>
+                                    Description
+                                    <p-sortIcon field="description"></p-sortIcon>
+                                    <!-- <sup>{{getSortIndex('description')}}</sup> -->
+                                </th>
+                                <th  style="width: 30px" pSortableColumn="Description" pResizableColumn>
+                                    Actions
+                                </th>
+                            </tr>
+                            <!-- <tr>
+                                <th></th>
+                                <th class="vr-input-icon-holder">
+                                    <input class="w-100" pInputText type="text">
+                                    <i class="pi pi-search search-pi-icon"></i>
+                                </th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr> -->
+                        </ng-template>
+                        <ng-template pTemplate="body" let-user let-expanded="expanded">
+                            <tr [class.vr-expanded-row]="expanded">
+                                <td>
+                                    <a class="cursor-pointer" data-bs-toggle="modal" data-bs-target="#userName" (click)="loadData(user.id)">
+                                        <img src="/assets/img/logo-evolv.png" alt="user">
+                                    </a>
+                                </td>
+                                <td class="vr-overflow-ellipsis" appTooltipOnOverflow>
+                                    <a class="user-name cursor-pointer" data-bs-toggle="modal" (click)="loadData(user.id)" data-bs-target="#userName">
+                                        {{user.name}}</a>
+                                </td>
+                                <td class="vr-overflow-ellipsis text-center" appTooltipOnOverflow>
+                                        {{user.label}}
+                                </td>
+                                <td class="text-center">{{user.description}}</td>
+                                <td class="text-center">
+                                    <i class="cursor-pointer pi pi-trash" (click)="delete(user.id)"></i>
+                                    <i class="cursor-pointer ps-3 pi pi-user-edit" (click)="edit(user.id)" data-bs-toggle="modal" data-bs-target="#newUser">
+                                    </i>
+                                </td>
+                            </tr>
+                            <ng-template pTemplate="groupfooter" let-user>
+                                <tr class="p-rowgroup-footer">
+                                    <td colspan="4" style="text-align: right">Total Customers</td>
+                                    <td>50</td>
+                                </tr>
+                            </ng-template>
+                        </ng-template>
+                        
+                    </p-table>
+                </div>
+                <p-confirmDialog [style]="{width: '35vw'}"  [baseZIndex]="10000"></p-confirmDialog>
+ 
+                
+             <!-- Modal -->
+             <div class="modal fade" id="userName" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">User information</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3 mt-3"><label for="email" class="form-label"><span class="fw-bold">Name:</span> {{nml}}</label></div>
+                        <div class="mb-3 mt-3"><label for="email" class="form-label"><span class="fw-bold">Label:</span> {{lbll}}</label></div>
+                        <div class="mb-3 mt-3"><label for="email" class="form-label"><span class="fw-bold">Description:</span> {{descl}}</label></div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="modal fade" id="newUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Create Role</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        
+                            <div class="mb-3 mt-3">
+                              <label for="email" class="form-label">Name</label>
+                              <input type="text" class="form-control" [(ngModel)]="nm" required placeholder="Enter Name" name="Name">
+                            </div>
+                            <div class="mb-3 mt-3">
+                                <label for="email" class="form-label">Label</label>
+                                <input type="text" class="form-control" [(ngModel)]="lbl" placeholder="Enter Label" name="Label">
+                            </div>
+                            <div class="mb-3 mt-3">
+                                <label for="email" class="form-label">Description</label>
+                                <textarea row="3" type="text" class="form-control" [(ngModel)]="desc" placeholder="Enter Description" name="Description"></textarea>
+                              </div>
+                        <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+                    </div>
+                    <div class="modal-footer">
+                      <!-- <button type="button" class="btn btn-secondary float-start" data-bs-dismiss="modal">Close</button> -->
+                      <button type="button" class="evolv-btn float-end" (click)="create()" data-bs-dismiss="modal">{{isEdit?'Update':'Create'}}</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+        </div>
+        
+        <!-- <div class="text-center p-3">
+            <button type="button" class="evolv-btn me-3">Save</button>
+            <button type="button" class="evolv-btn me-3">Add Row</button>
+            <button type="button" class="evolv-btn me-3">Delete</button>
+            <button type="button" class="evolv-btn me-3">Revert</button>
+            <button type="button" class="evolv-btn me-3">Copy</button>
+            <button type="button" class="evolv-btn me-3">Pase</button>
+            <button type="button" class="evolv-btn me-3">Export</button>
+        </div> -->
+        </div>
+    </div>
+</div>
