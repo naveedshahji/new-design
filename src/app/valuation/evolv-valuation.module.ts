@@ -35,4 +35,6 @@ import {HttpClientModule} from '@angular/common/http';
   providers: [],
   exports: [RouterModule]
 })
-export class EvolvValuationgModule { }
+export class EvolvValuationgModule  {  constructor(){
+  console.log("in valuation module");
+}}

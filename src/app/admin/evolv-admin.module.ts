@@ -28,5 +28,5 @@ import { ProductService } from './user-managment/productservice';
   exports: [RouterModule]
 })
 export class EvolvAdminModule {  constructor(){
-  console.log("is me also");
+  console.log("in admin module");
 }}

@@ -1,4 +1,5 @@
 import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from '@angular/core';
 import { CreateDiscountScenarioComponent } from './discount-scenario-management/create-discount-scenario/create-discount-scenario.component';
 import { SearchDiscountScenarioComponent } from './discount-scenario-management/search-discount-scenario/search-discount-scenario.component';
 import { CreateModelExecutionComponent } from './model-execution-management/create-model-execution/create-model-execution.component';
@@ -14,8 +15,6 @@ import { ValuationCohortComponent } from './cohort/valuation-cohort.component';
 import { ValuationHomeComponent } from './home/valuation-home.component';
 import { ValuationModelComponent } from './model/valuation-model.component';
 export const reportRoutes: Routes = [
-  { path: 'valuation',
-    children: [
       { path: 'CreateDiscountScenario', component: CreateDiscountScenarioComponent },
       { path: 'SearchDiscountScenario', component: SearchDiscountScenarioComponent },
       { path: 'SearchNewBusiness', component: SearchNewBusinessComponent },
@@ -30,8 +29,10 @@ export const reportRoutes: Routes = [
       { path: 'Home', component: ValuationHomeComponent },
       { path: 'Model', component: ValuationModelComponent },
       { path: 'SearchPositionData', component: SearchPositionDataComponent }
-    ]
-  }
 ];
-
-export const valuationRoutesModule = RouterModule.forChild(reportRoutes);
+@NgModule({
+  imports: [RouterModule.forChild(reportRoutes)],
+  exports: [RouterModule]
+})
+export class valuationRoutesModule { }
+//export const valuationRoutesModule = RouterModule.forChild(reportRoutes);
