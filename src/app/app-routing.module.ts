@@ -34,11 +34,19 @@ const routes: Routes = [
     component: InstrumentBrowserComponent
   },
   //lazy load all routes
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/evolv-admin.module').then(m => m.EvolvAdminModule)
+  },
+  {
+    path: 'valuation',
+    loadChildren: () => import('./valuation/evolv-valuation.module').then(m => m.EvolvValuationgModule)
+  },
   // {
-  //   path: 'reporting',
-  //   loadChildren: () => import('./profile/profile.module').then(m => m.ReportingModule)
+  //   path: 'admin',
+  //   loadChildren  : './admin/evolv-admin.module#EvolvAdminModule'
   // },
-  { path: '',   redirectTo: '/admin/roleManagment', pathMatch: 'full' },
+  { path: '',   redirectTo: '/accounting/instrument-browser', pathMatch: 'full' },
   { path: '**', component: PageErrorComponent },
 ];
 @NgModule({

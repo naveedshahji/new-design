@@ -11,7 +11,6 @@ export class KeycloakService {
     static userInfo: UserInfo;
 
     static init(): Promise<any> {
-        console.log("4444444444444444")
         if (environment.production) {
             return KeycloakService.initProduction();
         } else {
@@ -20,7 +19,6 @@ export class KeycloakService {
     }
 
     private static initProduction(): Promise<any> {
-        console.log("5555555555")
         const kc: any = {};
         kc.realm = 'evolv-idp';
         kc['auth-server-url'] = '${keycloak.url}';
@@ -51,8 +49,7 @@ export class KeycloakService {
             return uri;
         }
 
-        return new Promise((resolve, reject) => {
-            console.log("6666666666666666666")
+        return new Promise((resolve, reject) => { 
             keycloakAuth
                 .init({onLoad: 'login-required', checkLoginIframe: false})
                 .success(() => {
@@ -90,8 +87,7 @@ export class KeycloakService {
         });
     }
 
-    static getToken(): Promise<string> {
-        console.log("777777777777777")
+    static getToken(): Promise<string> { 
         return new Promise<string>((resolve, reject) => {
             if (KeycloakService.auth.authz.token) {
                 KeycloakService.auth.authz
