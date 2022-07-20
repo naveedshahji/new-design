@@ -3,14 +3,21 @@ import { JsonContent } from 'inversify-express-utils';
 import {LazyLoadEvent, SortMeta} from 'primeng/api';
 import {Table} from 'primeng/table';
 import {delay, finalize, mergeMap} from 'rxjs/operators';
-import {Observable} from 'rxjs';
+import { getAdminAllRoles } from '../../admin/store/admin.selectors';
 import {AppResourceService} from '../../core/api/app.resource';
 import { AdminService } from '../services/admin.service';
 import {ConfirmationService} from 'primeng/api';
 import {Message} from 'primeng/api';
 import { PrimeNGConfig } from 'primeng/api'; 
 import { apis } from 'src/app/core/api/api-calls';
-
+import { Store } from '@ngrx/store';
+import { State } from '../../admin/store/reducers';
+import { Observable, Subject } from 'rxjs';
+import { takeUntil, take } from 'rxjs/operators';
+import {
+  getAdminUser,
+  createAdminUser
+} from '../../admin/store/admin.actions';
 @Component({
   selector: 'app-role-managment',
   templateUrl: './role-managment.component.html',
@@ -19,7 +26,6 @@ import { apis } from 'src/app/core/api/api-calls';
   
 })
 export class RoleManagmentComponent implements OnInit {
-
   //TODO:ALL any type will be changed to type 
   msgs: Message[] = [];
   userList: any;
@@ -42,9 +48,12 @@ export class RoleManagmentComponent implements OnInit {
   ];
   spinnerText: any;
   _userList$: Observable<any>;
-  constructor(private service: AppResourceService, private adminService: AdminService, private confirmationService: ConfirmationService,
+  singleNewsMedia$: Observable<any>;
+  private unsubscribe$ = new Subject<void>();
+  constructor(private store: Store<State>, private service: AppResourceService, private adminService: AdminService, private confirmationService: ConfirmationService,
     private primengConfig: PrimeNGConfig) { }
   ngOnInit() {
+    this.store.dispatch(getAdminUser({payload: {url: '/evolv/global/NSHAH/admin/role/custom?_=1655392857256' }}));
     this.primengConfig.ripple = true;
     this.isEdit = false;
     this.ID = "";
@@ -75,17 +84,17 @@ export class RoleManagmentComponent implements OnInit {
 
 
 
-  this.getAllRoles();
-  this.resList.subscribe((users: any) => {
-    this.loading = false;
-    return this.successHandle(users);
-    //  console.log("user new user",users)
-    //  that._userList$ =  users;
-    //  that.userList =  users;
-    //  console.log("user new again there",that._userList$)
-    //  that.loading = false;
-    //  localStorage.setItem('users', JSON.stringify(that._userList$));
-   });
+   this.getAllRoles();
+  // this.resList.subscribe((users: any) => {
+  //   this.loading = false;
+  //   return this.successHandle(users);
+  //   //  console.log("user new user",users)
+  //   //  that._userList$ =  users;
+  //   //  that.userList =  users;
+  //   //  console.log("user new again there",that._userList$)
+  //   //  that.loading = false;
+  //   //  localStorage.setItem('users', JSON.stringify(that._userList$));
+  //  });
    console.log("now",this._userList$);
  
   //this.userList = [{"id":45,"name":"nshah","label":"admin","description":"This role enables the user to see new Angular UI ","permissions":[]},{"id":51,"name":"nshah0","label":"admin","description":"This role enables the user to see new Angular UI","permissions":[]},{"id":53,"name":"nshah1","label":"admin","description":"This role enables the user to see new Angular UI","permissions":[]},{"id":54,"name":"nshah2","label":"admin","description":"This role enables the user to see new Angular UI","permissions":[]},{"id":55,"name":"nshah3","label":"admin","description":"This role enables the user to see new Angular UI","permissions":[]},{"id":56,"name":"nshah4","label":"admin","description":"This role enables the user to see new Angular UI","permissions":[]},{"id":57,"name":"nshah5","label":"admin","description":"This role enables the user to see new Angular UI","permissions":[]},{"id":58,"name":"nshah6","label":"admin","description":"This role enables the user to see new Angular UI","permissions":[]}];
@@ -93,9 +102,15 @@ export class RoleManagmentComponent implements OnInit {
   }
 
   getAllRoles(){
+    console.log("first testong call")
      this.loading = true;
-     this.resList = this.adminService.getAllRoles();
-    
+     //this.resList = this.adminService.getAllRoles();
+     //this.singleNewsMedia$ = this.store.pipe(select(getSharedNewsMedia, {index: this.data.mediaSelectedIndex, sanitizer: this.sanitizer}));
+     this.store.select(getAdminAllRoles).pipe(takeUntil(this.unsubscribe$)).subscribe((response: any) => {
+      this._userList$ = response.data;
+      console.log("response",response)
+      //this.doesUserHaveDefaultCard = response.data.card_id == null ? false : true;
+    });
   }
 
   successHandle(data:any){
@@ -122,18 +137,22 @@ export class RoleManagmentComponent implements OnInit {
 //     this.resList = this.adminService.updateRole(['role','ddd']);  
 //  }
   create(){
-    const res = this.adminService.updateRole(apis.updateRole,  [{name: this.nm, label: this.lbl, description: this.desc}]);
+    console.log("create is called");
+    this.store.dispatch(createAdminUser({payload: {url: '/evolv/global/NSHAH/admin/role/bulk', 
+    params: [{ name: this.nm, label: this.lbl, description: this.desc}]}
+  }));
+    //const res = this.adminService.updateRole(apis.updateRole,  [{name: this.nm, label: this.lbl, description: this.desc}]);
 
-    res.subscribe((newUser: any) => {
-      console.log("aaaaaa",newUser);
-      this.userList.unshift(newUser[0]);
+    // res.subscribe((newUser: any) => {
+    //   console.log("aaaaaa",newUser);
+    //   this.userList.unshift(newUser[0]);
       //  console.log("user new user",users)
       //  that._userList$ =  users;
       //  that.userList =  users;
       //  console.log("user new again there",that._userList$)
       //  that.loading = false;
       //  localStorage.setItem('users', JSON.stringify(that._userList$));
-     })
+     //})
     // if(!this.isEdit){
     //    const newUser = {"id":1+this.userList.length+this.nm,"name":this.nm,"label":this.lbl,"description":this.desc,"permissions":[]};
     //     this.userList.unshift(newUser);
@@ -235,7 +254,7 @@ export class RoleManagmentComponent implements OnInit {
   // }
 
   load() {
-    console.log("hhhhhhhh")
+    console.log("11111111")
       // if (!event) {
       //     event = this.table.createLazyLoadMetadata();
       // }
@@ -260,6 +279,11 @@ export class RoleManagmentComponent implements OnInit {
           this.loading = true;
       });
    
+  }
+  
+  ngOnDestroy() {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }
 

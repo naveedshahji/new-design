@@ -14,6 +14,13 @@ import { MessagesModule } from 'primeng/messages';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { UserManagmentComponent } from './user-managment/user-managment.component';
 import { ProductService } from './user-managment/productservice';
+
+import { StoreModule } from '@ngrx/store'; 
+ 
+import { adminReducer } from './store/admin.reducer'; 
+
+import { EffectsModule } from '@ngrx/effects';
+import { adminEffects } from './store/admin.effects';
 @NgModule({
   declarations: [RoleManagmentComponent, UserManagmentComponent],
   imports: [
@@ -22,7 +29,10 @@ import { ProductService } from './user-managment/productservice';
     adminRoutingModule,
     RouterTestingModule,
     HttpClientModule,
-    FormsModule,ButtonModule,MessagesModule,ConfirmDialogModule
+    FormsModule,ButtonModule,MessagesModule,ConfirmDialogModule,
+    StoreModule.forRoot({admin: adminReducer}),
+    HttpClientModule,
+    EffectsModule.forRoot([adminEffects])
   ],
   providers: [AdminService, ApiService, ProductService],
   exports: [RouterModule]

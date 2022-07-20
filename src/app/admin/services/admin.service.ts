@@ -26,8 +26,8 @@ export class AdminService {
   // }
 
   // Simulate GET /Admins
-  getAllRoles(): Observable<any[]> {
-    return this.api.getAllRoles();
+  getAllRoles(url:any): Observable<any> {
+    return this.api.getAllRoles(url);
   }
 
   // Simulate GET /Admins/:id

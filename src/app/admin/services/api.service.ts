@@ -17,6 +17,7 @@ import {
   IDownloadFormatQuery,
   TDownloadFileFormat, TFileAction, ISummaryResponseItem
 } from '../../core/api/api-calls';
+import { delay } from 'rxjs/operators';
 // import { map, catchError } from 'rxjs/operators';
 const API_URL = "environment.apiUrl";
 const httpOptions = {
@@ -33,10 +34,10 @@ export class ApiService {
  
   }
 
-  public getAllRoles(): Observable<any[]> {
+  public getAllRoles(url:any): Observable<any> {
     return this.http
-      .get(apis.roleManagment, httpOptions)
-      .pipe(map((response: any) => response),
+      .get(url, httpOptions)
+      .pipe(delay(500),map((response: any) => response),
       catchError(err => {
         console.log('caught mapping error and rethrowing', err);
         return throwError(() => new Error('test'));
