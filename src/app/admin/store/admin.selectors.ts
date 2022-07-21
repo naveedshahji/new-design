@@ -18,6 +18,8 @@ export const getadmin = (state: State) => state.admin;
 //   export const getadmin = (state: State) => state.admin;
 const adminObj: any = {};
 const previewUrlObject: any = {};
+export const isRolesLoading = createSelector(getadmin,
+    admin => admin.isRolesLoading);
 
 export const getAdminAllRoles = createSelector(getadmin,
     admin => admin);

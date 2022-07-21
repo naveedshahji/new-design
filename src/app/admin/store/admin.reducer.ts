@@ -4,6 +4,7 @@ import { createAdminUser, createAdminUserComplete,getAdminUser,getAdminUserCompl
 import { adminState } from './admin.models';
 
 export const initialState: adminState = {
+  isRolesLoading: false,
   id  : 32432,
   name : "sadsadsadsa",
   label  : "SAdasdsad",
@@ -14,10 +15,10 @@ export const initialState: adminState = {
 
 const reducer = createReducer(initialState,
   on(getAdminUser, (state, props) => {
-    return {...state, datapassing: props.payload}
+    return {...state, isRolesLoading: true, datapassing: props.payload}
   }),
   on(getAdminUserComplete, (state, props) => {
-    return {...state, dataReciving: props.payload}
+    return {...state, isRolesLoading: false, data: props.payload}
   }),
   on(createAdminUser, (state, props) => {
     return {...state, adminState: props.payload};

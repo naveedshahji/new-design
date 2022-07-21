@@ -3,7 +3,7 @@ import { JsonContent } from 'inversify-express-utils';
 import {LazyLoadEvent, SortMeta} from 'primeng/api';
 import {Table} from 'primeng/table';
 import {delay, finalize, mergeMap} from 'rxjs/operators';
-import { getAdminAllRoles } from '../../admin/store/admin.selectors';
+import { getAdminAllRoles, isRolesLoading } from '../../admin/store/admin.selectors';
 import {AppResourceService} from '../../core/api/app.resource';
 import { AdminService } from '../services/admin.service';
 import {ConfirmationService} from 'primeng/api';
@@ -49,10 +49,12 @@ export class RoleManagmentComponent implements OnInit {
   spinnerText: any;
   _userList$: Observable<any>;
   singleNewsMedia$: Observable<any>;
+  isLoading$: Observable<any>;
   private unsubscribe$ = new Subject<void>();
   constructor(private store: Store<State>, private service: AppResourceService, private adminService: AdminService, private confirmationService: ConfirmationService,
     private primengConfig: PrimeNGConfig) { }
   ngOnInit() {
+    this.isLoading$ = this.store.select(isRolesLoading);
     this.store.dispatch(getAdminUser({payload: {url: '/evolv/global/NSHAH/admin/role/custom?_=1655392857256' }}));
     this.primengConfig.ripple = true;
     this.isEdit = false;
@@ -103,14 +105,16 @@ export class RoleManagmentComponent implements OnInit {
 
   getAllRoles(){
     console.log("first testong call")
-     this.loading = true;
-     //this.resList = this.adminService.getAllRoles();
-     //this.singleNewsMedia$ = this.store.pipe(select(getSharedNewsMedia, {index: this.data.mediaSelectedIndex, sanitizer: this.sanitizer}));
-     this.store.select(getAdminAllRoles).pipe(takeUntil(this.unsubscribe$)).subscribe((response: any) => {
-      this._userList$ = response.data;
-      console.log("response",response)
-      //this.doesUserHaveDefaultCard = response.data.card_id == null ? false : true;
-    });
+    this.loading = false;
+    //  //this.resList = this.adminService.getAllRoles();
+    //  //this.singleNewsMedia$ = this.store.pipe(select(getSharedNewsMedia, {index: this.data.mediaSelectedIndex, sanitizer: this.sanitizer}));
+    //  this.store.select(getAdminAllRoles).pipe(takeUntil(this.unsubscribe$)).subscribe((response: any) => {
+    //   this.userList = response.data;
+    //   console.log("response",response)
+      
+    //   //this.doesUserHaveDefaultCard = response.data.card_id == null ? false : true;
+    // });
+    this._userList$ = this.store.select(getAdminAllRoles);
   }
 
   successHandle(data:any){
