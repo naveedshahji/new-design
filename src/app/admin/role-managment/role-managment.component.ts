@@ -55,7 +55,7 @@ export class RoleManagmentComponent implements OnInit {
     private primengConfig: PrimeNGConfig) { }
   ngOnInit() {
     this.isLoading$ = this.store.select(isRolesLoading);
-    this.store.dispatch(getAdminUser({payload: {url: '/evolv/global/NSHAH/admin/role/custom?_=1655392857256' }}));
+    this.store.dispatch(getAdminUser({payload: {url: apis.roleManagment}}));
     this.primengConfig.ripple = true;
     this.isEdit = false;
     this.ID = "";
@@ -142,7 +142,7 @@ export class RoleManagmentComponent implements OnInit {
 //  }
   create(){
     console.log("create is called");
-    this.store.dispatch(createAdminUser({payload: {url: '/evolv/global/NSHAH/admin/role/bulk', 
+    this.store.dispatch(createAdminUser({payload: {url: apis.updateRole, 
     params: [{ name: this.nm, label: this.lbl, description: this.desc}]}
   }));
     //const res = this.adminService.updateRole(apis.updateRole,  [{name: this.nm, label: this.lbl, description: this.desc}]);
@@ -215,23 +215,26 @@ export class RoleManagmentComponent implements OnInit {
   //   localStorage.setItem('users', JSON.stringify(this.userList));
   // }
   delete(id:any) {
-    console.log("hhhh", this.confirmationService)
+ 
     this.confirmationService.confirm({
         message: 'Do you want to delete this record?',
         header: 'Delete Confirmation',
         icon: 'pi pi-info-circle',
         accept: () => {
-          const res = this.adminService.deleteRoleById(apis.deleteRole, id);
-          res.subscribe((deleted: any) => {
-            console.log("aaaaaa",deleted);
-            if(deleted == 'SUCCESS'){
-              this.userList = this.userList.filter((x: any) => { return x.id != id;});
-              localStorage.setItem('users', JSON.stringify(this.userList));
-              this.msgs = [{severity:'info', summary:'Confirmed', detail:'Record deleted'}];
-            } else{
-              this.msgs = [{severity:'info', summary:'Error', detail:'Due to some error unable to delete.'}];
-            }
-           })
+          // const res = this.adminService.deleteRoleById(apis.deleteRole, id);
+          this.store.dispatch(createAdminUser({payload: {url: apis.updateRole, 
+            params: [{ name: this.nm, label: this.lbl, description: this.desc}]}
+          }));
+          // res.subscribe((deleted: any) => {
+          //   console.log("aaaaaa",deleted);
+          //   if(deleted == 'SUCCESS'){
+          //     this.userList = this.userList.filter((x: any) => { return x.id != id;});
+          //     localStorage.setItem('users', JSON.stringify(this.userList));
+          //     this.msgs = [{severity:'info', summary:'Confirmed', detail:'Record deleted'}];
+          //   } else{
+          //     this.msgs = [{severity:'info', summary:'Error', detail:'Due to some error unable to delete.'}];
+          //   }
+          //  })
     
         },
         reject: () => {

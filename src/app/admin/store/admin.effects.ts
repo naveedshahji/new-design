@@ -6,6 +6,7 @@ import { mergeMap, map, withLatestFrom } from "rxjs/operators";
 import { from, empty, Observable } from "rxjs";
 import { getAdminUser, getAdminUserComplete, createAdminUser, createAdminUserComplete } from "./admin.actions";
 import { AdminService } from '../services/admin.service';
+import { AdminApiService } from '../services/admin-api.service';
 import { Action } from "rxjs/internal/scheduler/Action";
 
 @Injectable()
@@ -13,13 +14,14 @@ export class adminEffects {
   constructor(
     private actions$: Actions,
     private store$: Store<State>, 
-    private adminService: AdminService) {
+    private adminService: AdminService,
+    private adminApiService: AdminApiService) {
   }
 
   getAdminUser$ = createEffect(() => this.actions$.pipe( 
     ofType(getAdminUser),
     mergeMap(action => {
-      return from(this.adminService.getAllRoles(action.payload.url))
+      return from(this.adminApiService.getAllRoles(action.payload.url))
         .pipe(
           map((response) => {
             console.log("in get",response)
@@ -28,6 +30,18 @@ export class adminEffects {
         )
     })
   ));
+  // getAdminUser$ = createEffect(() => this.actions$.pipe( 
+  //   ofType(getAdminUser),
+  //   mergeMap(action => {
+  //     return from(this.adminService.getAllRoles(action.payload.url))
+  //       .pipe(
+  //         map((response) => {
+  //           console.log("in get",response)
+  //           return getAdminUserComplete({payload: response});
+  //         })
+  //       )
+  //   })
+  // ));
 
   
   createAdminUser$ = createEffect(() => this.actions$.pipe( 

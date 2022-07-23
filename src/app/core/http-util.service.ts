@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
-import { CoreModule } from '../core.module';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: CoreModule
+  providedIn: 'root'
 })
 export class HttpUtilService {
   constructor(private http: HttpClient) { }
@@ -35,7 +34,7 @@ export class HttpUtilService {
     headers: new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded'
     }),
-    body: null,
+    body: '',
     observe: 'response' as 'response'
   };
 
@@ -59,23 +58,28 @@ export class HttpUtilService {
   postWithBoundariesPromise<T>(url: string, body: any): Promise<T> {
     return new Promise<T>((resolve) => {
       this.postWithBoundaries(url, body)
-        .subscribe((data: T) => {
-          resolve(data);
-        }, err => {
-          //TODO: Let's think of a better way to handle this
-          resolve(null);
-        })
+        .subscribe({
+          next: (data: any) => { 
+            resolve(data);
+          },
+          error: (error) => {
+            resolve(error);
+          }
+        });
     })
   }
 
   getArrayBufferPromise<T>(url: string): Promise<T> {
     return new Promise<T>(resolve => {
       this.getArrayBuffer(url)
-      .subscribe((data: any) => {
-        resolve(data);
-      }, err => {
-        resolve(null);
-      })
+      .subscribe({
+        next: (data: any) => { 
+          resolve(data);
+        },
+        error: (error) => {
+          resolve(error);
+        }
+      });
     })
   }
 
@@ -115,12 +119,14 @@ export class HttpUtilService {
   putPromise<T>(url: string, body: any): Promise<T> {
     return new Promise<T>((resolve) => {
       this.put(url, body)
-        .subscribe((data: T) => {
+      .subscribe({
+        next: (data: any) => { 
           resolve(data);
-        }, err => {
-          //TODO: Let's think of a better way to handle this
-          resolve(null);
-        })
+        },
+        error: (error) => {
+          resolve(error);
+        }
+      });
     })
   }
   
@@ -138,17 +144,14 @@ export class HttpUtilService {
   postPromise<T>(url: string, body: any): Promise<T> {
     return new Promise<T>((resolve) => {
       this.post(url, body)
-        .subscribe((data: T) => {
+      .subscribe({
+        next: (data: any) => { 
           resolve(data);
-        }, err => {
-          //TODO: Let's think of a better way to handle this
-          if( err.status != undefined && err.status == '429'){
-            var responseObj: any = { 'type' :'error', 'status' : err.status};
-            resolve(responseObj);
-          } else {
-            resolve(null);
-          }
-        })
+        },
+        error: (error) => {
+          resolve(error);
+        }
+      });
     })
   }
 
@@ -161,14 +164,31 @@ export class HttpUtilService {
       )
   }
 
+  // getPromise<T>(url: string): Promise<T> {
+  //   console.log("inside promise")
+  //   return new Promise<T>(resolve => {
+  //     this.get(url)
+  //       // .subscribe({complete: console.info})
+  //       .subscribe((data: any) => {
+  //         console.log("inside promise data", data)
+  //         resolve(data);
+  //       }, err => {
+  //         resolve(err);
+  //       })
+  //   })
+  // }
+
   getPromise<T>(url: string): Promise<T> {
-    return new Promise<T>(resolve => {
-      this.get(url)
-        .subscribe((data: T) => {
-          resolve(data);
-        }, err => {
-          resolve(null);
-        })
+      return new Promise<T>(resolve => {
+        this.get(url)
+        .subscribe({
+          next: (data: any) => { 
+            resolve(data);
+          },
+          error: (error) => {
+            resolve(error);
+          }
+        });
     })
   }
 
@@ -188,7 +208,7 @@ export class HttpUtilService {
   getBlobPromise<T>(url: string): Promise<T> {
     return new Promise<T>(resolve => {
       this.getBlob(url)
-        .subscribe((data: T) => {
+        .subscribe((data: any) => {
           resolve(data);
         })
     })
@@ -210,7 +230,9 @@ export class HttpUtilService {
   }
 
   delete<T>(url: string, body: any): Observable<T> {
+    console.log("inside delete api");
     let transformedBody: string = this.TransformJSONToFormUrlEncoded(body);
+    console.log("inside delete transformedBody",transformedBody);
     this.StandardHTTPDeleteOptions.body = transformedBody;
 
     return this.http.delete<T>(url, this.StandardHTTPDeleteOptions)
@@ -224,12 +246,14 @@ export class HttpUtilService {
   deletePromise<T>(url: string, body?: any): Promise<T> {
     return new Promise<T>((resolve) => {
       this.delete(url, body)
-        .subscribe((data: T) => {
+      .subscribe({
+        next: (data: any) => { 
           resolve(data);
-        }, err => {
-          //TODO: Let's think of a better way to handle this
-          resolve(null);
-        })
+        },
+        error: (error) => {
+          resolve(error);
+        }
+      });
     })
   }
 
