@@ -7,13 +7,11 @@ import { RouterTestingModule } from "@angular/router/testing";
 import {HttpClientModule} from '@angular/common/http';
 import { RoleManagmentComponent } from './role-managment/role-managment.component';
 import { FormsModule } from '@angular/forms';
-import { AdminService } from './services/admin.service';
-import { ApiService } from './services/api.service';
+import { AdminApiService } from './services/admin-api.service';
 import { ButtonModule } from 'primeng/button';
 import { MessagesModule } from 'primeng/messages';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { UserManagmentComponent } from './user-managment/user-managment.component';
-import { ProductService } from './user-managment/productservice';
 
 import { StoreModule } from '@ngrx/store'; 
  
@@ -34,7 +32,7 @@ import { adminEffects } from './store/admin.effects';
     HttpClientModule,
     EffectsModule.forRoot([adminEffects])
   ],
-  providers: [AdminService, ApiService, ProductService],
+  providers: [AdminApiService],
   exports: [RouterModule]
 })
 export class EvolvAdminModule {  constructor(){

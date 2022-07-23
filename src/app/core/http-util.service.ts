@@ -19,12 +19,23 @@ export class HttpUtilService {
 
   StandardHTTPPostOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/x-www-form-urlencoded'
-    }),
-    withCredentials: true,
-    observe: 'response' as 'response'
+      'Content-Type':  'application/json',
+      Authorization: 'my-auth-token'
+    })
   };
-
+  // StandardHTTPPostOptions = {
+  //   headers: new HttpHeaders({
+  //     'Content-Type': 'application/x-www-form-urlencoded'
+  //   }),
+  //   withCredentials: true,
+  //   observe: 'response' as 'response'
+  // };
+  // const httpOptions = {
+  //   headers: new HttpHeaders({
+  //     'Content-Type':  'application/json',
+  //     Authorization: 'my-auth-token'
+  //   })
+  // };
   StandardHTTPGetOptions = {
     withCredentials: true,
     observe: 'response' as 'response'
@@ -106,9 +117,11 @@ export class HttpUtilService {
   }
 
   put<T>(url: string, body: any): Observable<T> {
-    let transformedBody: string = this.TransformJSONToFormUrlEncoded(body);
-
-    return this.http.put<T>(url, transformedBody, this.StandardHTTPPostOptions)
+    // console.log("this.TransformJSONToFormUrlEncoded(body)",this.TransformJSONToFormUrlEncoded(body))
+    // let transformedBody: string = this.TransformJSONToFormUrlEncoded(body);
+    // console.log("body",body)
+    // console.log("vvvvvvvv (body)", )
+    return this.http.put<T>(url, body, this.StandardHTTPPostOptions)
       .pipe(
         map((response: any) => {
           return response.body
@@ -124,6 +137,7 @@ export class HttpUtilService {
           resolve(data);
         },
         error: (error) => {
+          console.log("error",error)
           resolve(error);
         }
       });

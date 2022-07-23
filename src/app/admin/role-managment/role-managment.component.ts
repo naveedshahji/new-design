@@ -4,8 +4,6 @@ import {LazyLoadEvent, SortMeta} from 'primeng/api';
 import {Table} from 'primeng/table';
 import {delay, finalize, mergeMap} from 'rxjs/operators';
 import { getAdminAllRoles, isRolesLoading } from '../../admin/store/admin.selectors';
-import {AppResourceService} from '../../core/api/app.resource';
-import { AdminService } from '../services/admin.service';
 import {ConfirmationService} from 'primeng/api';
 import {Message} from 'primeng/api';
 import { PrimeNGConfig } from 'primeng/api'; 
@@ -30,13 +28,13 @@ export class RoleManagmentComponent implements OnInit {
   msgs: Message[] = [];
   userList: any;
   selectedRole: any;
-  nm:any;
-  lbl:any;
-  desc:any;
+  nm:string;
+  lbl:string;
+  desc:string;
   nml:any;
   lbll:any;
   resList: any;
-  descl:any;
+  descl:string;
   ID:any;
   nameUp:boolean = false;
   labelUp:boolean = false;
@@ -51,7 +49,7 @@ export class RoleManagmentComponent implements OnInit {
   singleNewsMedia$: Observable<any>;
   isLoading$: Observable<any>;
   private unsubscribe$ = new Subject<void>();
-  constructor(private store: Store<State>, private service: AppResourceService, private adminService: AdminService, private confirmationService: ConfirmationService,
+  constructor(private store: Store<State>, private confirmationService: ConfirmationService,
     private primengConfig: PrimeNGConfig) { }
   ngOnInit() {
     this.isLoading$ = this.store.select(isRolesLoading);

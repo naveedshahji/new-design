@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild, ChangeDetectionStrategy} from '@angular/co
 import {LazyLoadEvent, SortMeta} from 'primeng/api';
 import {Table} from 'primeng/table';
 import {delay, finalize, mergeMap} from 'rxjs/operators';
-import {AppResourceService} from '../../core/api/app.resource';
+ 
 @Component({
   selector: 'app-configure-rcf',
   templateUrl: './configure-rcf.component.html',
@@ -11,7 +11,7 @@ import {AppResourceService} from '../../core/api/app.resource';
 })
 export class ConfigureRcfComponent implements OnInit {
 
-  constructor(private service: AppResourceService) { }
+  constructor( ) { }
   ngOnInit(): void {
     const uploadedFileList: any = {
       "links" : [ ],
@@ -202,9 +202,9 @@ export class ConfigureRcfComponent implements OnInit {
   // });
 
 
-  this.service.getQueryDef("test").subscribe((types) => {
-    console.log("type",types)
-  });
+  // this.service.getQueryDef("test").subscribe((types: any) => {
+  //   console.log("type",types)
+  // });
 
 
 

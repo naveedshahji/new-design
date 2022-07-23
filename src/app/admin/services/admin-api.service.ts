@@ -47,12 +47,15 @@ export class AdminApiService {
     return this.httpUtilService.getPromise<any>(url);
   }
 
-
-  createRoles(params: any, url: string): Promise<any>{
-    return this.httpUtilService.postPromise<any>(url, params);
+  createRoles(url: string, params: any): Promise<any>{
+    return this.httpUtilService.putPromise<any>(url, params);
   }
+  
+  // createRoles(url: string, params: any): Promise<any>{
+  //   return this.httpUtilService.postPromise<any>(url, params);
+  // }
 
-  deleteRecomendation(params: any): Promise<any>{
+  deleteRole(url: string, params: any): Promise<any>{
     return this.httpUtilService.deletePromise<any>("/api/contact/recommend", params);
   }
   // getMonthlyTotalsCommissionLastTwelveMonths(user: any): Promise<MonthlyTotalsCommissionLastTwelveMonths>{

@@ -5,7 +5,6 @@ import { State } from "../store/reducers";
 import { mergeMap, map, withLatestFrom } from "rxjs/operators";
 import { from, empty, Observable } from "rxjs";
 import { getAdminUser, getAdminUserComplete, createAdminUser, createAdminUserComplete } from "./admin.actions";
-import { AdminService } from '../services/admin.service';
 import { AdminApiService } from '../services/admin-api.service';
 import { Action } from "rxjs/internal/scheduler/Action";
 
@@ -14,7 +13,6 @@ export class adminEffects {
   constructor(
     private actions$: Actions,
     private store$: Store<State>, 
-    private adminService: AdminService,
     private adminApiService: AdminApiService) {
   }
 
@@ -47,7 +45,7 @@ export class adminEffects {
   createAdminUser$ = createEffect(() => this.actions$.pipe( 
     ofType(createAdminUser),
     mergeMap(action => {
-      return from(this.adminService.updateRole(action.payload.url, action.payload.params))
+      return from(this.adminApiService.createRoles(action.payload.url, action.payload.params))
         .pipe(
           map((response) => {
             return createAdminUserComplete({payload: response});
@@ -55,4 +53,16 @@ export class adminEffects {
         )
     })
   ));
+
+  // deleteAdminUser$ = createEffect(() => this.actions$.pipe( 
+  //   ofType(createAdminUser),
+  //   mergeMap(action => {
+  //     return from(this.adminApiService.deleteRole(action.payload.url, action.payload.params))
+  //       .pipe(
+  //         map((response) => {
+  //           return createAdminUserComplete({payload: response});
+  //         })
+  //       )
+  //   })
+  // ));
 }
