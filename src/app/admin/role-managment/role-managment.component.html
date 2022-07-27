@@ -9,6 +9,7 @@
             <!-- <li *ngFor="let customer of _userList$ | async; i as index">
                 <span>{{ i + 1}}.</span>  {{customer.name}}
           </li>  -->
+          -------{{isError$ | async}}
           <div class="loading-more-contacts" *ngIf="(isLoading$ | async)">
             <span class="loading-text">LOADING MORE...</span>
             <div class="loading-dots-wrapper">
@@ -19,9 +20,9 @@
           </div>
  
             <div> 
-                <ng-container *ngIf="_userList$ | async as data">
+                <!-- <ng-container *ngIf="_userList$ | async as data"> -->
                 <div #tableContainer>
-                <p-table #table [value]="data.data" dataKey="id" rowExpandMode="single"
+                <p-table #table [value]="userList" dataKey="id" rowExpandMode="single"
                 [resizableColumns]="true" columnResizeMode="expand"
                 [lazy]="true" (onLazyLoad)="load()" [paginator]="true" [showCurrentPageReport]="true"
                 [lazyLoadOnInit]="false" [loading]="(isLoading$ | async)" loadingIcon="pi pi-spin pi-spinner loading-icon-size"
@@ -95,7 +96,7 @@
                         
                     </p-table>
                 </div>
-                </ng-container>
+                <!-- </ng-container> -->
                 <p-confirmDialog [style]="{width: '35vw'}"  [baseZIndex]="10000"></p-confirmDialog>
  
                 

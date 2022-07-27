@@ -4,7 +4,9 @@ import { createAdminUser, createAdminUserComplete,getAdminUser,getAdminUserCompl
 import { adminState } from './admin.models';
 
 export const initialState: adminState = {
+  data: [],
   isRolesLoading: false,
+  isError: false,
   id  : 32432,
   name : "sadsadsadsa",
   label  : "SAdasdsad",
@@ -24,7 +26,20 @@ const reducer = createReducer(initialState,
     return {...state, adminState: props.payload};
   }),
   on(createAdminUserComplete, (state, props) => {
-    return {...state, data: props.payload};
+    console.log("props propspropspropsprops",props);
+    console.log("props props.payload",props.payload);
+    console.log("...state",state);
+    console.log("...state datata",...state.data);
+    if(props.payload && props.payload[0]){
+      const newDiscoverResults = [...state.data, props.payload];
+      const newDiscoverResults2 = [...state.data, props.payload[0]];
+      console.log("...newDiscoverResults",newDiscoverResults);
+      console.log("...newDiscoverResults2",newDiscoverResults2);
+      return {...state, data: newDiscoverResults2};
+    }
+    else {
+      return {...state, isError: true};
+    }
   }),
 );
 

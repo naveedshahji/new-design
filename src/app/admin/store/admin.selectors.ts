@@ -20,7 +20,13 @@ const adminObj: any = {};
 const previewUrlObject: any = {};
 export const isRolesLoading = createSelector(getadmin,
     admin => admin.isRolesLoading);
+export const isError = createSelector(getadmin,
+    admin => admin.isError);
 
 export const getAdminAllRoles = createSelector(getadmin,
     admin => admin);
 
+export const adminAddedResponse = createSelector(
+    getadmin,
+    admin => admin.name
+    );

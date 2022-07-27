@@ -3,7 +3,7 @@ import { JsonContent } from 'inversify-express-utils';
 import {LazyLoadEvent, SortMeta} from 'primeng/api';
 import {Table} from 'primeng/table';
 import {delay, finalize, mergeMap} from 'rxjs/operators';
-import { getAdminAllRoles, isRolesLoading } from '../../admin/store/admin.selectors';
+import { getAdminAllRoles, isRolesLoading, isError, adminAddedResponse } from '../../admin/store/admin.selectors';
 import {ConfirmationService} from 'primeng/api';
 import {Message} from 'primeng/api';
 import { PrimeNGConfig } from 'primeng/api'; 
@@ -14,7 +14,7 @@ import { Observable, Subject } from 'rxjs';
 import { takeUntil, take } from 'rxjs/operators';
 import {
   getAdminUser,
-  createAdminUser
+  createAdminUser,
 } from '../../admin/store/admin.actions';
 @Component({
   selector: 'app-role-managment',
@@ -48,11 +48,13 @@ export class RoleManagmentComponent implements OnInit {
   _userList$: Observable<any>;
   singleNewsMedia$: Observable<any>;
   isLoading$: Observable<any>;
+  isError$: Observable<any>;
   private unsubscribe$ = new Subject<void>();
   constructor(private store: Store<State>, private confirmationService: ConfirmationService,
     private primengConfig: PrimeNGConfig) { }
   ngOnInit() {
     this.isLoading$ = this.store.select(isRolesLoading);
+    this.isError$ = this.store.select(isError);
     this.store.dispatch(getAdminUser({payload: {url: apis.roleManagment}}));
     this.primengConfig.ripple = true;
     this.isEdit = false;
@@ -99,6 +101,14 @@ export class RoleManagmentComponent implements OnInit {
  
   //this.userList = [{"id":45,"name":"nshah","label":"admin","description":"This role enables the user to see new Angular UI ","permissions":[]},{"id":51,"name":"nshah0","label":"admin","description":"This role enables the user to see new Angular UI","permissions":[]},{"id":53,"name":"nshah1","label":"admin","description":"This role enables the user to see new Angular UI","permissions":[]},{"id":54,"name":"nshah2","label":"admin","description":"This role enables the user to see new Angular UI","permissions":[]},{"id":55,"name":"nshah3","label":"admin","description":"This role enables the user to see new Angular UI","permissions":[]},{"id":56,"name":"nshah4","label":"admin","description":"This role enables the user to see new Angular UI","permissions":[]},{"id":57,"name":"nshah5","label":"admin","description":"This role enables the user to see new Angular UI","permissions":[]},{"id":58,"name":"nshah6","label":"admin","description":"This role enables the user to see new Angular UI","permissions":[]}];
   console.log("this",this._userList$)
+  this.store.select(adminAddedResponse).pipe(takeUntil(this.unsubscribe$)).subscribe(response => {
+    console.log("aaaaaaaaaaaaaaaaa respppppppp",response)
+    // if(response != null){
+    //   if(response.type == 'success'){
+    //   this.store.dispatch(upgradeSubscription({payload: {params: {plan: this.getAPIPlanTypeByPlanType(), billing: this.planSelected == 'yearly'?'annual':'monthly'}}}));
+    //   } 
+    // }
+  }) 
   }
 
   getAllRoles(){
@@ -106,13 +116,13 @@ export class RoleManagmentComponent implements OnInit {
     this.loading = false;
     //  //this.resList = this.adminService.getAllRoles();
     //  //this.singleNewsMedia$ = this.store.pipe(select(getSharedNewsMedia, {index: this.data.mediaSelectedIndex, sanitizer: this.sanitizer}));
-    //  this.store.select(getAdminAllRoles).pipe(takeUntil(this.unsubscribe$)).subscribe((response: any) => {
-    //   this.userList = response.data;
-    //   console.log("response",response)
+     this.store.select(getAdminAllRoles).pipe(takeUntil(this.unsubscribe$)).subscribe((response: any) => {
+      this.userList = response.data;
+      console.log("response",response)
       
-    //   //this.doesUserHaveDefaultCard = response.data.card_id == null ? false : true;
-    // });
-    this._userList$ = this.store.select(getAdminAllRoles);
+      //this.doesUserHaveDefaultCard = response.data.card_id == null ? false : true;
+    });
+    //this._userList$ = this.store.select(getAdminAllRoles);
   }
 
   successHandle(data:any){
@@ -121,6 +131,7 @@ export class RoleManagmentComponent implements OnInit {
     console.log("in suncces handle",this.userList) 
     console.log(this.userList) //4. logs data when it comes
 }
+
 
   getSortIndex(field: string): any {
     console.log("getSortIndex ",field)

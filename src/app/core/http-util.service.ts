@@ -124,7 +124,7 @@ export class HttpUtilService {
     return this.http.put<T>(url, body, this.StandardHTTPPostOptions)
       .pipe(
         map((response: any) => {
-          return response.body
+          return response
         })
       )
   }

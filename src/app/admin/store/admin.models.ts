@@ -6,7 +6,9 @@
 // import { ViewPostResponse } from '../../core/http/admin/models/view-post-reponse';
 // import { TaggedUsersResponse } from '../../core/http/admin/models/tagged-users-response';
 export interface adminState {
+  data: any;
   isRolesLoading:boolean,
+  isError: boolean,
   id? : any,
   name? : string,
   label? : string,
