@@ -56,7 +56,7 @@ export class AdminApiService {
   // }
 
   deleteRole(url: string, params: any): Promise<any>{
-    return this.httpUtilService.deletePromise<any>("/api/contact/recommend", params);
+    return this.httpUtilService.deletePromise<any>(url, params);
   }
   // getMonthlyTotalsCommissionLastTwelveMonths(user: any): Promise<MonthlyTotalsCommissionLastTwelveMonths>{
   //   return this.httpUtilService.getPromise(`/api/admin/commissions/${user}`);

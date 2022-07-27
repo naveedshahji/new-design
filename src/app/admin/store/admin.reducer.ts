@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { createAdminUser, createAdminUserComplete,getAdminUser,getAdminUserComplete } from './admin.actions';
+import { createAdminUser, createAdminUserComplete,getAdminUser,getAdminUserComplete, deleteAdminUser, deleteAdminUserComplete } from './admin.actions';
   
 import { adminState } from './admin.models';
 
@@ -35,6 +35,25 @@ const reducer = createReducer(initialState,
       const newDiscoverResults2 = [...state.data, props.payload[0]];
       console.log("...newDiscoverResults",newDiscoverResults);
       console.log("...newDiscoverResults2",newDiscoverResults2);
+      return {...state, data: newDiscoverResults2};
+    }
+    else {
+      return {...state, isError: true};
+    }
+  }),
+  on(deleteAdminUser, (state, props) => {
+    return {...state, adminState: props.payload};
+  }),
+  on(deleteAdminUserComplete, (state, props) => {
+    console.log("delete 111111111",props);
+    console.log("delete 222222",props.payload);
+    console.log("delete 333333333",state);
+    console.log("delete 44444444444444",...state.data);
+    if(props.payload && props.payload[0]){
+      const newDiscoverResults = [...state.data, props.payload];
+      const newDiscoverResults2 = [...state.data, props.payload[0]];
+      console.log("ddddddddd",newDiscoverResults);
+      console.log("ddddddddddd",newDiscoverResults2);
       return {...state, data: newDiscoverResults2};
     }
     else {

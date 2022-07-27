@@ -26,5 +26,7 @@ props<{payload: [ {
         description  : string,
         permissions  : any
     } ]}>());
-// export const emptyTaggedContentState = createAction('/admin/emptyTaggedContentState');
+    export const deleteAdminUser = createAction('deleteAdminUser', props<{payload: {url: string, params: any}}>());
+    export const deleteAdminUserComplete = createAction('deleteAdminUserComplete', 
+    props<{payload: any}>());
 

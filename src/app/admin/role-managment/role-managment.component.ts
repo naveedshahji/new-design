@@ -15,6 +15,7 @@ import { takeUntil, take } from 'rxjs/operators';
 import {
   getAdminUser,
   createAdminUser,
+  deleteAdminUser
 } from '../../admin/store/admin.actions';
 @Component({
   selector: 'app-role-managment',
@@ -231,8 +232,8 @@ export class RoleManagmentComponent implements OnInit {
         icon: 'pi pi-info-circle',
         accept: () => {
           // const res = this.adminService.deleteRoleById(apis.deleteRole, id);
-          this.store.dispatch(createAdminUser({payload: {url: apis.updateRole, 
-            params: [{ name: this.nm, label: this.lbl, description: this.desc}]}
+          console.log("id.toString()",id.toString())
+          this.store.dispatch(deleteAdminUser({payload: {url: apis.deleteRole, params: [id.toString()]}
           }));
           // res.subscribe((deleted: any) => {
           //   console.log("aaaaaa",deleted);

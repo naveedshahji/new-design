@@ -244,11 +244,12 @@ export class HttpUtilService {
   }
 
   delete<T>(url: string, body: any): Observable<T> {
-    console.log("inside delete api");
-    let transformedBody: string = this.TransformJSONToFormUrlEncoded(body);
+    console.log("inside delete api", body);
+    let transformedBody: any = this.TransformJSONToFormUrlEncoded(body);
     console.log("inside delete transformedBody",transformedBody);
     this.StandardHTTPDeleteOptions.body = transformedBody;
-
+    console.log("urlurlurlurlurl", url);
+    console.log("bodybodybodybody", body);
     return this.http.delete<T>(url, this.StandardHTTPDeleteOptions)
       .pipe(
         map((response: any) => {
