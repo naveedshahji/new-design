@@ -55,8 +55,10 @@ export class AdminApiService {
   //   return this.httpUtilService.postPromise<any>(url, params);
   // }
 
+  // some delete use post on backendhere :)
   deleteRole(url: string, params: any): Promise<any>{
-    return this.httpUtilService.deletePromise<any>(url, params);
+    //return this.httpUtilService.deletePromise<any>(url, params);
+    return this.httpUtilService.postPromise(url, params);
   }
   // getMonthlyTotalsCommissionLastTwelveMonths(user: any): Promise<MonthlyTotalsCommissionLastTwelveMonths>{
   //   return this.httpUtilService.getPromise(`/api/admin/commissions/${user}`);

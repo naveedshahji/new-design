@@ -17,6 +17,14 @@ export class HttpUtilService {
     return str.join("&");
   };
 
+  TransformJSONToObject(obj: any): any {
+    let str = [];
+    for (var p in obj) {
+      str.push(obj[p]);
+    }
+    return str;
+  };
+
   StandardHTTPPostOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
@@ -145,9 +153,11 @@ export class HttpUtilService {
   }
   
   post<T>(url: string, body: any): Observable<T> {
-    let transformedBody: string = this.TransformJSONToFormUrlEncoded(body);
-
-    return this.http.post<T>(url, transformedBody, this.StandardHTTPPostOptions)
+    //let transformedBody: string = this.TransformJSONToObject(body);
+    //this.TransformJSONToFormUrlEncoded(body);
+    //console.log("post transformedBody", transformedBody);
+    //console.log("post orignal body", body)
+    return this.http.post<T>(url, body, this.StandardHTTPPostOptions)
       .pipe(
         map((response: any) => {
           return response.body
